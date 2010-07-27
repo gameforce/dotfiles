@@ -2,9 +2,9 @@ My various config files - use at your own risk! This includes instructions on ho
 
 Adding your config files to GitHub
 
-You.ll also nee to Signup for a free GitHub account, and create a new repository. 
+You'll also need to Signup for a free GitHub account, and create a new repository. 
 GitHub uses public-key cryptography and SSH for authentication, so you.ll need to 
-create a SSH public key on each machine you.ll be accessing GitHub from. 
+create a SSH public key on each machine you'll be accessing GitHub from. 
 
 Here's how to do this:
 
@@ -13,7 +13,7 @@ $ mkdir backup
 $ mv id_rsa* key_backup
 $ ssh-keygen -t rsa -C "darf@hostname"
 
-Adding ssh-agent to teh startup file (.zshrc):
+Adding ssh-agent to the startup file (.zshrc):
 ---------------------------------------------------------
 SSH_ENV="$HOME/.ssh/environment"
 
@@ -37,7 +37,7 @@ else
   start_agent;
 fi
 --------------------------------------------------------
-After adding your public key details to your GitHub account page you.re ready to add your config files:
+After adding your public key details to your GitHub account page you're ready to add your config files:
 
   git init
   git add .zshrc
@@ -53,7 +53,7 @@ Setting up a new machine
 
 You'll need to create a SSH public key on the new machine, just as you did on the previous one.
 
-Once you.ve done that:
+Once you've done that:
 
   git init
   git pull git@github.com:gameforce/dotfiles.git
@@ -73,4 +73,4 @@ Then all you need to do on your other machines is issue the following command:
 
   git pull origin master
 
-And you.re synced!
+And you're synced!
