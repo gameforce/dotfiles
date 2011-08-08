@@ -89,10 +89,10 @@ zstyle ':completion:*:man:*'            menu yes select
 bindkey -e
 bindkey "[2~" overwrite-mode          #insert
 bindkey "[1~" beginning-of-line	#home
-bindkey "OH" 	beginning-of-line       #home
+bindkey "[H" 	beginning-of-line       #home
 bindkey "" backward-delete-char	#bs
 bindkey "[3~" delete-char		#del
-bindkey "OF" 	end-of-line             #end
+bindkey "[F" 	end-of-line             #end
 bindkey "[4~" end-of-line		#end
 bindkey "[5~" up-line-or-history      #pgup
 bindkey "[6~" down-line-or-history    #pgdn
