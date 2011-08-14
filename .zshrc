@@ -160,27 +160,21 @@ unsetopt bgnice autoparamslash
 setopt no_beep
 
 # This starts ssh-agent
-SSH_ENV="$HOME/.ssh/environment"
+test=`/bin/ps -ef | grep ssh-agent | grep -v grep  | awk '{print $2}' | xargs`
 
-function start_agent {
-  echo "Initializing new SSH agent..."
-  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-  echo succeeded
-  chmod 600 "${SSH_ENV}"
-  . "${SSH_ENV}" > /dev/null
-  /usr/bin/ssh-add;
-}
+if [ "$test" = "" ]; then
+   # there is no agent running
+   if [ -e "$HOME/.ssh/agent.sh" ]; then
+      # remove the old file
+      /bin/rm -f $HOME/.ssh/agent.sh
+   fi;
+   # start a new agent
+   /usr/bin/ssh-agent | grep -v echo >&$HOME/.ssh/agent.sh-
+fi;
 
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-  . "${SSH_ENV}" > /dev/null
-  #ps ${SSH_AGENT_PID} doesn't work under cywgin
-  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-    start_agent;
-  }
-else
-  start_agent;
-fi
+test -e $HOME/.ssh/agent.sh && source $HOME/.ssh/agent.sh
+
+alias kagent="kill -9 $SSH_AGENT_PID"
 
 # This sets the window title to the last run command. ##
 [[ -t 1 ]] || return
