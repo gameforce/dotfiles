@@ -53,7 +53,7 @@
     set showmatch " show matching brackets
     set sidescrolloff=10 " Keep 5 lines at the size
     set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
-    color ibmedit
+    color borland
 
 " Text Formatting/Layout {
     set pastetoggle=<F2>
