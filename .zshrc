@@ -16,11 +16,11 @@ export PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/g
 export MANPATH="/usr/local/man:/usr/share/man"
 export LESS=-cex3MR
 export DIRSTACKSIZE=20
-export EDITOR=/bin/vi
-export CVSROOT=:pserver:ngotsinas@cvs.mtl.proksim.com:/devenv/CVSROOT
+export EDITOR=/usr/bin/vim
+export CVSROOT=:pserver:ngotsinas@cvs.quazal.local:/devenv/CVSROOT
 
 # history
-export HISTSIZE=5000
+export HISTSIZE=2000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
