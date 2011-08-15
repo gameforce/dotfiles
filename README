@@ -14,28 +14,24 @@ $ mv id_rsa* key_backup
 $ ssh-keygen -t rsa -C "darf@hostname"
 
 Adding ssh-agent to the startup file (.zshrc):
----------------------------------------------------------
-SSH_ENV="$HOME/.ssh/environment"
 
-function start_agent {
-  echo "Initializing new SSH agent..."
-  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-  echo succeeded
-  chmod 600 "${SSH_ENV}"
-  . "${SSH_ENV}" > /dev/null
-  /usr/bin/ssh-add;
-}
+# This starts ssh-agent
+test=`/bin/ps -ef | grep ssh-agent | grep -v grep  | awk '{print $2}' | xargs`
 
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-  . "${SSH_ENV}" > /dev/null
-  #ps ${SSH_AGENT_PID} doesn't work under cywgin
-  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-    start_agent;
-  }
-else
-  start_agent;
-fi
+if [ "$test" = "" ]; then
+   # there is no agent running
+   if [ -e "$HOME/.ssh/agent.sh" ]; then
+      # remove the old file
+      /bin/rm -f $HOME/.ssh/agent.sh
+   fi;
+   # start a new agent
+   /usr/bin/ssh-agent | grep -v echo >&$HOME/.ssh/agent.sh-
+fi;
+
+test -e $HOME/.ssh/agent.sh && source $HOME/.ssh/agent.sh
+
+alias kagent="kill -9 $SSH_AGENT_PID"
+
 --------------------------------------------------------
 After adding your public key details to your GitHub account page you're ready to add your config files:
 
