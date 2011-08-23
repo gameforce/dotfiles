@@ -1,5 +1,4 @@
-# 
-# This file is based on the configuration written by
+# $Header: /home/darf/RCS/.zshrc,v 1.4 2011/08/19 18:44:19 darf Exp $
 # Nick Gotsinas, <darf@gameforce.ca>
 # Written since summer 2001 with various snippets from others
 
@@ -16,11 +15,12 @@ export PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/g
 export MANPATH="/usr/local/man:/usr/share/man"
 export LESS=-cex3MR
 export DIRSTACKSIZE=20
+export LESS=-cex3MR
 export EDITOR=/usr/bin/vim
-export CVSROOT=:pserver:ngotsinas@cvs.quazal.local:/devenv/CVSROOT
+export CVSROOT=:pserver:ngotsinas@cvs.mtl.proksim.com:/devenv/CVSROOT
 
 # history
-export HISTSIZE=2000
+export HISTSIZE=5000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
@@ -105,7 +105,7 @@ bindkey "^[[C"  forward-char            #right
 
 # portage
 alias es="sudo eix-sync"
-alias ew="sudo emerge -DuvaN world"
+alias ew="sudo emerge -auDN world --jobs=3"
 alias ec="sudo emerge --depclean"
 alias rv="sudo revdep-rebuild"
 
@@ -169,7 +169,7 @@ if [ "$test" = "" ]; then
       /bin/rm -f $HOME/.ssh/agent.sh
    fi;
    # start a new agent
-   /usr/bin/ssh-agent | grep -v echo >&$HOME/.ssh/agent.sh-
+   /usr/bin/ssh-agent | grep -v echo >&$HOME/.ssh/agent.sh 
 fi;
 
 test -e $HOME/.ssh/agent.sh && source $HOME/.ssh/agent.sh

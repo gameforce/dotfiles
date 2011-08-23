@@ -1,7 +1,7 @@
-# 
 # This file is based on the configuration written by
 # Nick Gotsinas, <darf@gameforce.ca>
 # Written since summer 2001 with various snippets from others
+# $Date: 2011/08/15 04:17:49 $ $Id: .zshrc,v 1.3 2011/08/15 04:17:49 darf Exp darf $
 
 # use hard limits, except for a smaller stack and no core dumps
 export SHELL=/bin/zsh
@@ -17,7 +17,7 @@ export MANPATH="/usr/local/man:/usr/share/man"
 export LESS=-cex3MR
 export DIRSTACKSIZE=20
 export LESS=-cex3MR
-export EDITOR=/bin/vi
+export EDITOR=/usr/bin/vim
 export CVSROOT=:pserver:ngotsinas@cvs.mtl.proksim.com:/devenv/CVSROOT
 
 # history
@@ -90,10 +90,10 @@ zstyle ':completion:*:man:*'            menu yes select
 bindkey -e
 bindkey "[2~" overwrite-mode          #insert
 bindkey "[1~" beginning-of-line	#home
-bindkey "OH" 	beginning-of-line       #home
+bindkey "[H" 	beginning-of-line       #home
 bindkey "" backward-delete-char	#bs
 bindkey "[3~" delete-char		#del
-bindkey "OF" 	end-of-line             #end
+bindkey "[F" 	end-of-line             #end
 bindkey "[4~" end-of-line		#end
 bindkey "[5~" up-line-or-history      #pgup
 bindkey "[6~" down-line-or-history    #pgdn
@@ -106,7 +106,7 @@ bindkey "^[[C"  forward-char            #right
 
 # portage
 alias es="sudo eix-sync"
-alias ew="sudo emerge -DuvaN world"
+alias ew="sudo emerge -auDN world --jobs=3"
 alias ec="sudo emerge --depclean"
 alias rv="sudo revdep-rebuild"
 
@@ -159,6 +159,23 @@ setopt complete_in_word magic_equal_subst
 setopt prompt_subst
 unsetopt bgnice autoparamslash
 setopt no_beep
+
+# This starts ssh-agent
+test=`/bin/ps -ef | grep ssh-agent | grep -v grep  | awk '{print $2}' | xargs`
+
+if [ "$test" = "" ]; then
+   # there is no agent running
+   if [ -e "$HOME/.ssh/agent.sh" ]; then
+      # remove the old file
+      /bin/rm -f $HOME/.ssh/agent.sh
+   fi;
+   # start a new agent
+   /usr/bin/ssh-agent | grep -v echo >&$HOME/.ssh/agent.sh 
+fi;
+
+test -e $HOME/.ssh/agent.sh && source $HOME/.ssh/agent.sh
+
+alias kagent="kill -9 $SSH_AGENT_PID"
 
 # This sets the window title to the last run command. ##
 [[ -t 1 ]] || return
