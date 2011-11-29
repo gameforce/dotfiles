@@ -55,9 +55,11 @@ Once you've done that:
   git pull git@github.com:gameforce/dotfiles.git
   git remote add origin git@github.com:gameforce/dotfiles.git
 
-Or for http (behind a proxy)
+Or for http (behind a proxy):
+  
   git init
-  git pull 
+  git pull https://gameforce@github.com/gameforce/dotfiles.git
+  git remote add origin https://gameforce@github.com/gameforce/dotfiles.git
 
 And your setup will match your other machine!
 
