@@ -6,9 +6,14 @@
 #   (use "git reset HEAD <file>..." to unstage)
 #
 #	deleted:    .vim/.netrwhist
+#	new file:   .vim/README.mkd
+#	new file:   .vim/autoload/togglebg.vim
 #	modified:   .vim/backup/COMMIT_EDITMSG~
-#	deleted:    .vim/bundle/vim-colors-solarized
+#	new file:   .vim/bitmaps/togglebg.png
+#	new file:   .vim/colors/solarized.vim
+#	new file:   .vim/doc/solarized.txt
 #	modified:   .vim/doc/tags
+#	renamed:    .vim/bundle/vim-colors-solarized -> .vim/vim
 #
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
@@ -48,12 +53,6 @@
 #	.sickbeard/
 #	.spumux/
 #	.ssh/
-#	.vim/README.mkd
-#	.vim/autoload/togglebg.vim
-#	.vim/bitmaps/
-#	.vim/colors/
-#	.vim/doc/solarized.txt
-#	.vim/vim/
 #	.viminfo
 #	.zcompdump
 #	.zprofile
