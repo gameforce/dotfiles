@@ -194,6 +194,16 @@ case $TERM in
   ;;
 esac
 
+# Automatically start a new screen or attach to the old one
+if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x -a "${SSH_TTY:-x}" ]
+then
+     STARTED_SCREEN=1 ; export STARTED_SCREEN
+     sleep 1
+     screen -RR && exit 0
+     # normally, execution of this rc script ends here...
+     echo "Screen failed! continuing with normal shell startup"
+fi
+
 setprompt () {
     # Need this, so the prompt will work
     setopt prompt_subst
