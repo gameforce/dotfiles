@@ -5,112 +5,106 @@
 # Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)
 #
-#	deleted:    .vim/.netrwhist
-#	new file:   .vim/README.mkd
-#	new file:   .vim/autoload/togglebg.vim
-#	modified:   .vim/backup/COMMIT_EDITMSG~
-#	new file:   .vim/bitmaps/togglebg.png
-#	new file:   .vim/colors/solarized.vim
-#	new file:   .vim/doc/solarized.txt
-#	modified:   .vim/doc/tags
-#	renamed:    .vim/bundle/vim-colors-solarized -> .vim/vim
+#	deleted:    README.mkd
+#	modified:   backup/COMMIT_EDITMSG~
+#	deleted:    vim
 #
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
 #
-#	.Xauthority
-#	.avidemux/
-#	.byobu/
-#	.config/
-#	.dbshell
-#	.dbus/
-#	.devede
-#	.download/
-#	.elinks/
-#	.fonts.conf
-#	.fonts/
-#	.gconf/
-#	.gconfd/
-#	.gem/
-#	.gitconfig
-#	.gtk-bookmarks
-#	.history
-#	.htoprc
-#	.john/
-#	.kde4/
-#	.kderc
-#	.lesshst
-#	.lftp/
-#	.mc/
-#	.mplayer/
-#	.mysql_history
-#	.phoronix-test-suite/
-#	.profile
-#	.recently-used.xbel
-#	.rtorrent.rc
-#	.screenrc-spencer
-#	.screenrc-startscreens
-#	.sickbeard/
-#	.spumux/
-#	.ssh/
-#	.viminfo
-#	.zcompdump
-#	.zprofile
-#	Bapabooiee-bapa_overlay-6c0c115.tar.gz
-#	HQSetup.zip
-#	MS Office 2003/
-#	OpsPass.psafe3
-#	QuazalBG.png
-#	archiveLivestats.py
-#	bin/
-#	borland.vim
-#	btmenu.png
-#	canix-vpn.tar.xz
-#	certs/
-#	dhcpd.conf
-#	docs/
-#	dotfiles/
-#	dstat.dat
-#	ec2key
-#	ghost_file.rgf
-#	gitosis-admin/
-#	graylog.tgz
-#	graylog2-web-interface-0.9.5p2.tar.gz
-#	hosts.txt
-#	hqsetup/
-#	hqstuff.msg
-#	id_rsa.pub
-#	images/
-#	iptables
-#	ipvsadm-rebuild.txt
-#	livestats_schema.sql
-#	lsatinfo.txt
-#	lsatmd5.out
-#	macs
-#	movies/
-#	mypasswd
-#	ngotsinas.zip
-#	ngrez.tgz
-#	operations/
-#	parallels-transporter-agent-9376.599993.run
-#	prompt_gentoo_setup
-#	qlogo.png
-#	quazal-logo.jpg
-#	resolv.conf
-#	rsync-backup/
-#	s13.ess
-#	scripts/
-#	secure.betaubi.com.pem
-#	secure.betaubi.com.public.pem
-#	skyrim.xz
-#	src/
-#	stat.dat
-#	temp/
-#	test.xml
-#	vim.txz
-#	vim/
-#	vimrc-backup.txt
-#	zpackage.tgz
-#	zsh.xz
-#	zshrc-backup.txt
-#	zshrcdot
+#	../.Xauthority
+#	../.avidemux/
+#	../.byobu/
+#	../.config/
+#	../.dbshell
+#	../.dbus/
+#	../.devede
+#	../.download/
+#	../.elinks/
+#	../.fonts.conf
+#	../.fonts/
+#	../.gconf/
+#	../.gconfd/
+#	../.gem/
+#	../.gitconfig
+#	../.gtk-bookmarks
+#	../.history
+#	../.htoprc
+#	../.john/
+#	../.kde4/
+#	../.kderc
+#	../.lesshst
+#	../.lftp/
+#	../.mc/
+#	../.mplayer/
+#	../.mysql_history
+#	../.phoronix-test-suite/
+#	../.profile
+#	../.recently-used.xbel
+#	../.rtorrent.rc
+#	../.screenrc-spencer
+#	../.screenrc-startscreens
+#	../.sickbeard/
+#	../.spumux/
+#	../.ssh/
+#	../.viminfo
+#	../.zcompdump
+#	../.zprofile
+#	../Bapabooiee-bapa_overlay-6c0c115.tar.gz
+#	../HQSetup.zip
+#	../MS Office 2003/
+#	../OpsPass.psafe3
+#	../QuazalBG.png
+#	../archiveLivestats.py
+#	../bin/
+#	../borland.vim
+#	../btmenu.png
+#	../canix-vpn.tar.xz
+#	../certs/
+#	../dhcpd.conf
+#	../docs/
+#	../dotfiles/
+#	../dstat.dat
+#	../ec2key
+#	../ghost_file.rgf
+#	../gitosis-admin/
+#	../graylog.tgz
+#	../graylog2-web-interface-0.9.5p2.tar.gz
+#	../hosts.txt
+#	../hqsetup/
+#	../hqstuff.msg
+#	../id_rsa.pub
+#	../images/
+#	../iptables
+#	../ipvsadm-rebuild.txt
+#	../livestats_schema.sql
+#	../lsatinfo.txt
+#	../lsatmd5.out
+#	../macs
+#	../movies/
+#	../mypasswd
+#	../ngotsinas.zip
+#	../ngrez.tgz
+#	../operations/
+#	../parallels-transporter-agent-9376.599993.run
+#	../prompt_gentoo_setup
+#	../qlogo.png
+#	../quazal-logo.jpg
+#	../resolv.conf
+#	../rsync-backup/
+#	../s13.ess
+#	../scripts/
+#	../secure.betaubi.com.pem
+#	../secure.betaubi.com.public.pem
+#	../skyrim.xz
+#	../src/
+#	../stat.dat
+#	../temp/
+#	../test.xml
+#	../vim.txz
+#	../vim/
+#	../vimrc-backup.txt
+#	../zpackage.tgz
+#	../zsh.xz
+#	../zshrc-backup.txt
+#	../zshrcdot
