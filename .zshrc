@@ -17,7 +17,6 @@ export LESS=-cex3MR
 export DIRSTACKSIZE=20
 export LESS=-cex3MR
 export EDITOR=/usr/bin/vim
-export CVSROOT=:pserver:ngotsinas@cvs.mtl.proksim.com:/devenv/CVSROOT
 
 # history
 export HISTSIZE=5000
