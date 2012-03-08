@@ -1,0 +1,117 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    .vim/colors/borland.vim
+#	deleted:    .vim/colors/gentooish.vim
+#	deleted:    .vim/colors/ibmedit.vim
+#	deleted:    .vim/colors/matrix.vim
+#	deleted:    .vim/colors/mayansmoke.vim
+#	deleted:    .vim/colors/neutron.vim
+#	deleted:    .vim/colors/oceandeep.vim
+#	deleted:    .vim/colors/simplewhite.vim
+#	modified:   .zshrc
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	.Xauthority
+#	.avidemux/
+#	.byobu/
+#	.config/
+#	.dbshell
+#	.dbus/
+#	.devede
+#	.download/
+#	.elinks/
+#	.fonts.conf
+#	.fonts/
+#	.gconf/
+#	.gconfd/
+#	.gem/
+#	.gitconfig
+#	.gtk-bookmarks
+#	.history
+#	.htoprc
+#	.john/
+#	.kde4/
+#	.kderc
+#	.lesshst
+#	.lftp/
+#	.mc/
+#	.mplayer/
+#	.mysql_history
+#	.phoronix-test-suite/
+#	.profile
+#	.recently-used.xbel
+#	.rtorrent.rc
+#	.screenrc-spencer
+#	.screenrc-startscreens
+#	.sickbeard/
+#	.spumux/
+#	.ssh/
+#	.vim/backup/.zshrc~
+#	.vim/backup/COMMIT_EDITMSG~
+#	.viminfo
+#	.zcompdump
+#	.zprofile
+#	Bapabooiee-bapa_overlay-6c0c115.tar.gz
+#	HQSetup.zip
+#	MS Office 2003/
+#	OpsPass.psafe3
+#	QuazalBG.png
+#	archiveLivestats.py
+#	bin/
+#	borland.vim
+#	btmenu.png
+#	canix-vpn.tar.xz
+#	certs/
+#	dhcpd.conf
+#	docs/
+#	dotfiles/
+#	dstat.dat
+#	ec2key
+#	ghost_file.rgf
+#	gitosis-admin/
+#	graylog.tgz
+#	graylog2-web-interface-0.9.5p2.tar.gz
+#	hosts.txt
+#	hqsetup/
+#	hqstuff.msg
+#	id_rsa.pub
+#	images/
+#	iptables
+#	ipvsadm-rebuild.txt
+#	livestats_schema.sql
+#	lsatinfo.txt
+#	lsatmd5.out
+#	macs
+#	movies/
+#	mypasswd
+#	ngotsinas.zip
+#	ngrez.tgz
+#	operations/
+#	parallels-transporter-agent-9376.599993.run
+#	prompt_gentoo_setup
+#	qlogo.png
+#	quazal-logo.jpg
+#	resolv.conf
+#	rsync-backup/
+#	s13.ess
+#	scripts/
+#	secure.betaubi.com.pem
+#	secure.betaubi.com.public.pem
+#	skyrim.xz
+#	src/
+#	stat.dat
+#	temp/
+#	test.xml
+#	vim.txz
+#	vimrc-backup.txt
+#	zpackage.tgz
+#	zsh.xz
+#	zshrc-backup.txt
+#	zshrcdot
