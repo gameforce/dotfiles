@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/etc/webalizer'
-let g:netrw_dirhist_2='/mnt/backup/etc/ddclient'
-let g:netrw_dirhist_3='/usr/share/doc/ddclient/examples'
-let g:netrw_dirhist_4='/etc/apache2/conf.d'

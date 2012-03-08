@@ -5,15 +5,10 @@
 # Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)
 #
-#	deleted:    .vim/colors/borland.vim
-#	deleted:    .vim/colors/gentooish.vim
-#	deleted:    .vim/colors/ibmedit.vim
-#	deleted:    .vim/colors/matrix.vim
-#	deleted:    .vim/colors/mayansmoke.vim
-#	deleted:    .vim/colors/neutron.vim
-#	deleted:    .vim/colors/oceandeep.vim
-#	deleted:    .vim/colors/simplewhite.vim
-#	modified:   .zshrc
+#	deleted:    .vim/.netrwhist
+#	modified:   .vim/backup/COMMIT_EDITMSG~
+#	deleted:    .vim/bundle/vim-colors-solarized
+#	modified:   .vim/doc/tags
 #
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
@@ -53,8 +48,12 @@
 #	.sickbeard/
 #	.spumux/
 #	.ssh/
-#	.vim/backup/.zshrc~
-#	.vim/backup/COMMIT_EDITMSG~
+#	.vim/README.mkd
+#	.vim/autoload/togglebg.vim
+#	.vim/bitmaps/
+#	.vim/colors/
+#	.vim/doc/solarized.txt
+#	.vim/vim/
 #	.viminfo
 #	.zcompdump
 #	.zprofile
@@ -110,6 +109,7 @@
 #	temp/
 #	test.xml
 #	vim.txz
+#	vim/
 #	vimrc-backup.txt
 #	zpackage.tgz
 #	zsh.xz
