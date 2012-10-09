@@ -143,6 +143,8 @@ alias tolower="for n in *; do mv $n `echo $n | tr '[:upper:]' '[:lower:]'`; done
 alias useinfo="cat /usr/portage/profiles/use*desc | grep -i" # can also use einfo -i if you have gentoolkit installed
 alias strip="sed -e 's/#.*//;/^\s*$/d' '$@'"
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
+alias tcpdump="tcpdump -qtnnni"
+alias df="df -h"
 
 # options
 # set -o noclobber	   # warn before clobbering a file with > ##
@@ -194,15 +196,15 @@ case $TERM in
   ;;
 esac
 
-# Automatically start a new screen or attach to the old one
-if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x -a "${SSH_TTY:-x}" ]
-then
-     STARTED_SCREEN=1 ; export STARTED_SCREEN
-     sleep 1
-     screen -RR && exit 0
-     # normally, execution of this rc script ends here...
-     echo "Screen failed! continuing with normal shell startup"
-fi
+# Automatically start a new screen or attach to the old one - uncomment if you want this
+#if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x -a "${SSH_TTY:-x}" ]
+#then
+#     STARTED_SCREEN=1 ; export STARTED_SCREEN
+#     sleep 1
+#     screen -RR && exit 0
+#     # normally, execution of this rc script ends here...
+#     echo "Screen failed! continuing with normal shell startup"
+#fi
 
 setprompt () {
     # Need this, so the prompt will work
