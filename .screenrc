@@ -8,10 +8,6 @@ deflogin off
 #Make scrollwheel work
 termcapinfo * ti@:te@
 
-# An alternative hardstatus to display a bar at the bottom listing the
-# windownames and highlighting the current windowname in blue.
-#hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
-
 # A cleaner status line without a background, looks better with solarized
 hardstatus alwayslastline '%{= dg} %{b}%H %{g}|%=%?%{d}%-w%?%{g}[ %{g}%n %t%?{%uw}%?%{g} ]%{w}%?%+w%?%=%{g}| %{b}%D %c'
 

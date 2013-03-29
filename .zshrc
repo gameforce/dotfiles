@@ -13,7 +13,6 @@ umask 022
 # environment
 export PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:~/scripts:~/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man"
-export LESS=-cex3MR
 export DIRSTACKSIZE=20
 export LESS=-cex3MR
 export EDITOR=/usr/bin/vim
