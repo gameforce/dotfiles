@@ -63,7 +63,7 @@ if [ -e `which keychain` ]
 then
 	eval `keychain --eval --agents ssh --inherit any id_rsa`
 else
-	echo -n "keychain is not installed, please install it first."
+	echo -n "keychain is not installed, please install it first"
 fi
 
 # aliases
