@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/oh-my-zsh
+ZSH=$HOME/.dotfiles/zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -42,14 +42,12 @@ source $ZSH/oh-my-zsh.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # environment
-export EPREFIX="/Library/Gentoo"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/share/man:${MANPATH}"
-export EDITOR="/usr/local/bin/vim"
 export MC_SKIN=$HOME/.mc/solarized.ini
 
 # history
-export HISTSIZE=20000
+export HISTSIZE=2000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
@@ -57,11 +55,16 @@ export SAVEHIST=$HISTSIZE
 export CLICOLOR=1
 
 # colors (gnu)
-eval $(dircolors /etc/DIR_COLORS)
+eval $(dircolors $HOME/.dircolors/dircolors.ansi-universal)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #keychain
-eval `keychain --eval --agents ssh --inherit any id_rsa`
+if [ -e `which keychain` ]
+then
+	eval `keychain --eval --agents ssh --inherit any id_rsa`
+else
+	echo -n "keychain is not installed, please install it first."
+fi
 
 # aliases
 alias ls='ls --color'
