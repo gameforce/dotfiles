@@ -1,8 +1,8 @@
-. /etc/bashrc
+. /etc/bash/bashrc
 
 # environment
 export DISPLAY=$DISPLAY
-export XAUTHORITY="/net/homes/ngotsina/.Xauthority"
+export XAUTHORITY="$HOME/.Xauthority"
 export PATH="/usr/sbin/:/sbin:/net/systems/bin:$PATH"
 
 # completion
@@ -13,7 +13,7 @@ bind "set show-all-if-ambiguous on"
 PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[2;32m\]>\[\e[m\] '
 
 #colors
-eval $(dircolors /net/homes/ngotsina/.dircolors/dircolors.256dark)
+eval $(dircolors $HOME/.dircolors/dircolors.256dark)
 
 #aliases
 alias cl='clear' 
@@ -58,4 +58,3 @@ alias fqu='crash-monitor -n -m fq-crashes -- fqu'
 alias go='exec csh && set _GOAT_TEMP=$?prompt && eval `goat bash $$ $_GOAT_TEMP !*`'
 alias module='(set _prompt="$prompt";set prompt="";eval `/usr/bin/modulecmd'
 alias rdesktop='rdesktop -g1280x1024 -ungotsina -dFRAMESTORE'
-
