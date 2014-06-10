@@ -1,6 +1,9 @@
 AddressFamily inet
 Protocol 2
 
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
 SyslogFacility AUTHPRIV
 
 PasswordAuthentication yes
