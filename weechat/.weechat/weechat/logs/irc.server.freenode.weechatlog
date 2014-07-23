@@ -1,0 +1,67 @@
+2014-06-10 12:19:58	--	irc: connecting to server chat.freenode.net/6667...
+2014-06-10 12:19:58	--	irc: connected to chat.freenode.net/6667 (62.231.75.133)
+2014-06-10 12:19:58	--	hobana.freenode.net (hobana.freenode.net): *** Looking up your hostname...
+2014-06-10 12:19:58	--	hobana.freenode.net (hobana.freenode.net): *** Checking Ident
+2014-06-10 12:19:58	--	hobana.freenode.net (hobana.freenode.net): *** Found your hostname
+2014-06-10 12:20:08	--	hobana.freenode.net (hobana.freenode.net): *** No Ident response
+2014-06-10 12:20:08	--	Welcome to the freenode Internet Relay Chat Network darf
+2014-06-10 12:20:08	--	MSG(nickserv): identify *******
+2014-06-10 12:20:08	--	Your host is hobana.freenode.net[62.231.75.133/6667], running version ircd-seven-1.1.3
+2014-06-10 12:20:08	--	This server was created Tue Jul 23 2013 at 10:16:18 UTC
+2014-06-10 12:20:08	--	hobana.freenode.net ircd-seven-1.1.3 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2014-06-10 12:20:08	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+2014-06-10 12:20:08	--	CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=100 FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: :are supported by this server
+2014-06-10 12:20:08	--	EXTBAN=$,arxz WHOX CLIENTVER=3.0 SAFELIST ELIST=CTU :are supported by this server
+2014-06-10 12:20:08	--	There are 192 users and 95977 invisible on 27 servers
+2014-06-10 12:20:08	--	31 :IRC Operators online
+2014-06-10 12:20:08	--	17 :unknown connection(s)
+2014-06-10 12:20:08	--	52233 :channels formed
+2014-06-10 12:20:08	--	I have 9330 clients and 1 servers
+2014-06-10 12:20:08	--	9330 12000 :Current local users 9330, max 12000
+2014-06-10 12:20:08	--	96169 98406 :Current global users 96169, max 98406
+2014-06-10 12:20:08	--	Highest connection count: 12001 (12000 clients) (1220475 connections received)
+2014-06-10 12:20:08	--	- hobana.freenode.net Message of the Day -
+2014-06-10 12:20:08	--	- Welcome to hobana.freenode.net in Pitesti, Romania! Thank
+2014-06-10 12:20:08	--	- you to RCS-RDS for sponsoring this server!
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- Ion Hobana (1931-2011) was a Romanian science fiction writer,
+2014-06-10 12:20:08	--	- literary critic and ufologist. Ion Hobana is a literary
+2014-06-10 12:20:08	--	- pseudonym, the writer's real name being Aurelian Manta Rosie.
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- Welcome to freenode - supporting the free and open source
+2014-06-10 12:20:08	--	- software communities since 1998.
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- By connecting to freenode you indicate that you have read and
+2014-06-10 12:20:08	--	- accept our policies as set out on http://www.freenode.net
+2014-06-10 12:20:08	--	- freenode runs an open proxy scanner. Please join #freenode for
+2014-06-10 12:20:08	--	- any network-related questions or queries, where a number of
+2014-06-10 12:20:08	--	- volunteer staff and helpful users will be happy to assist you.
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2014-06-10 12:20:08	--	- together with like-minded FOSS enthusiasts for talks and
+2014-06-10 12:20:08	--	- real-life collaboration.
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- We would like to thank Private Internet Access
+2014-06-10 12:20:08	--	- (https://www.privateinternetaccess.com/) and the other
+2014-06-10 12:20:08	--	- organisations that help keep freenode and our other projects
+2014-06-10 12:20:08	--	- running for their sustained support.
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- In particular we would like to thank the sponsor
+2014-06-10 12:20:08	--	- of this server, details of which can be found above.
+2014-06-10 12:20:08	--	-
+2014-06-10 12:20:08	--	- ***************************************************************
+2014-06-10 12:20:08	--	- Please read http://blog.freenode.net/2010/11/be-safe-out-there/
+2014-06-10 12:20:08	--	- ***************************************************************
+2014-06-10 12:20:08	--	End of /MOTD command.
+2014-06-10 12:20:08	--	User mode [+i] by darf
+2014-06-10 12:20:08	--	NickServ (NickServ@services.): This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+2014-06-10 12:20:14	--	NickServ (NickServ@services.): You are now identified for darf.
+2014-06-10 12:20:14	--	funtoo/user/darf :is now your hidden host (set by services.)
+2014-06-10 12:24:00	=!=	irc: this buffer is not a channel!
+2014-06-10 12:28:37	ℹ 	[darf] (~darf@funtoo/user/darf): Nick
+2014-06-10 12:28:37	ℹ 	[darf] #funtoo
+2014-06-10 12:28:37	ℹ 	[darf] hobana.freenode.net (Bucharest, RO)
+2014-06-10 12:28:37	ℹ 	[darf] is connecting from *@bas4-stlambert20-1178038120.dsl.bell.ca 70.55.111.104
+2014-06-10 12:28:37	ℹ 	[darf] idle: 00 hours 08 minutes 23 seconds, signon at: Tue, 10 Jun 2014 12:20:01
+2014-06-10 12:28:37	ℹ 	[darf] is logged in as darf
+2014-06-10 12:28:37	ℹ 	[darf] End of /WHOIS list.

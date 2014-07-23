@@ -61,7 +61,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #keychain
 if [ -e `which keychain` ]
 then
-	eval `keychain --eval --agents ssh --inherit any id_rsa`
+	eval `keychain --eval --agents ssh id_rsa`
 else
 	echo -n "keychain is not installed, please install it first"
 fi
