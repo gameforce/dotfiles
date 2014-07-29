@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+SIZE="24"
+FILEDIR="/tmp/"
+SHELLPID=$$
+FILENAME=ftpcheck.$SHELLPID
+cp ftpcheck${SIZE} ftpcheck.$SHELLPID
+FILEPATH=${FILEDIR}ftpcheck.$SHELLPID
+
+echo "FILENAME="$FILENAME
+echo "FILEPATH="$FILEPATH
+echo "FILEDIR="$FILEDIR
+

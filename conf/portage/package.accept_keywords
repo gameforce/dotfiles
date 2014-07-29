@@ -1,0 +1,17 @@
+# required by bliss-kernel (argument)
+=sys-kernel/bliss-kernel-3.14.12 ~amd64
+# required by sys-fs/zfs-0.6.3
+# required by zfs (argument)
+=sys-fs/zfs-kmod-0.6.3 ~amd64
+# required by sys-fs/zfs-kmod-0.6.3
+# required by sys-fs/zfs-0.6.3
+# required by zfs (argument)
+=sys-kernel/spl-0.6.3 ~amd64
+# required by zfs (argument)
+=sys-fs/zfs-0.6.3 ~amd64
+# required by bliss-initramfs (argument)
+=sys-kernel/bliss-initramfs-5.0.0 ~amd64
+# required by bliss-boot (argument)
+=sys-boot/bliss-boot-1.1.0 ~amd64
+# required by =app-misc/elasticsearch-0.90.6 (argument)
+=app-misc/elasticsearch-0.90.6 ~amd64

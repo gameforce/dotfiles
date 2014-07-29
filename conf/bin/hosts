@@ -1,0 +1,15 @@
+# $Header: /private/etc/RCS/hosts,v 1.3 2011/08/25 02:24:22 ngotsinas Exp $
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+#
+127.0.0.1	rubicon.gameforce.org rubicon localhost
+255.255.255.255	broadcasthost
+::1             localhost 
+
+## parallels vms
+10.211.55.12    funtoo
+
+## gameforce.org
+192.168.12.5    deathstar

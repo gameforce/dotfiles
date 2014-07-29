@@ -1,0 +1,6 @@
+#!/bin/zsh
+echo "Hi hun, restarting the share services for you..."
+sudo /etc/init.d/PS3MediaServer stop
+sudo /etc/init.d/PS3MediaServer start
+sudo /etc/init.d/ushare restart
+echo "All done, you should be able to see the videos now!"
