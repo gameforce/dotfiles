@@ -1,0 +1,23 @@
+# These settings were set by the metro build script that automatically built this stage.
+# Please consult /etc/portage/make.conf.example for a more detailed example.
+
+CFLAGS="-O2 -march=k8 -pipe -fomit-frame-pointer"
+CXXFLAGS="${CFLAGS}"
+
+# USE Flags
+USE="mmx sse sse2 -doc -fortran -ipv6 vim-syntax zsh-completion"
+
+# Options
+ACCEPT_KEYWORDS="amd64"
+FEATURES="ccache collision-protect parallel-fetch buildpkg userfetch getbinpkg"
+CCACHE_DIR="/var/tmp/ccache"
+CCACHE_SIZE="2G"
+EMERGE_DEFAULT_OPTS="--ask --verbose --jobs -binpkg-respect-use=n"
+PORTAGE_NICENESS=3
+PORTAGE_BINHOST="http://192.168.11.4/funtoo/packages"
+MAKEOPTS="-j3" ##grep "processor" /proc/cpuinfo | wc -l
+VIDEO_CARDS="nvidia vmware virtualbox"
+INPUT_DEVICES="evdev synaptics"
+ACCEPT_LICENSE="*"
+LINGUAS="en en_US.UTF-8 en_CA.UTF-8"
+LANG="en_US.UTF-8 en_CA.UTF-8"
