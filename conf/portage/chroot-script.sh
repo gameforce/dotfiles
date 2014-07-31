@@ -28,8 +28,7 @@ genkernel --no-clean --no-mrproper --zfs --loglevel=5 initramfs
 
 # Emerge some basic system stuff.  Substitute other loggers, crons, etc. as preferred.
 echo "=sys-boot/grub-1.99_rc99 **" >> /etc/portage/package.accept+keywords
-emerge -v rsyslog vixie-cron app-misc/screen dhcpcd vim sys-block/parted \
-  sys-apps/gptfdisk =sys-boot/grub-1.99_rc99
+emerge -v rsyslog vixie-cron app-misc/screen dhcpcd vim sys-apps/gptfdisk sys-boot/grub
 
 # Add services to startup. zfs and udev must be in boot for anything to work.
 rc-update add zfs boot
