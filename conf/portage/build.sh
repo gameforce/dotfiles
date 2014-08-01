@@ -122,7 +122,7 @@ zfs create rpool/var/log
 
 # create a 4G swap space; adjust as needed
 zfs create -o sync=always -o primarycache=metadata -o secondarycache=none -o volblocksize=4K -V 4G rpool/swap
-wait 3
+sleep 2
 mkswap -f /dev/zvol/rpool/swap
 swapon /dev/zvol/rpool/swap
 
