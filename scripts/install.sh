@@ -4,7 +4,6 @@
 # copy directories
 echo -n "Copying directories..."
 cp -r $HOME/.dotfiles/vim $HOME/.vim
-cp -r $HOME/.dotfiles/etc $HOME/.etc
 cp -r $HOME/.dotfiles/mc $HOME/.mc
 cp -r $HOME/.dotfiles/dircolors $HOME/.dircolors
 
