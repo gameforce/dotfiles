@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+Die_Cmd='killall loopFtp.py testftp.sh lftp'
+
+ssh deadstats $Die_Cmd
+ssh ops $Die_Cmd
+ssh linuxdev $Die_Cmd
+ssh lnxdev64 $Die_Cmd
+ssh backup $Die_Cmd
+ssh rubix2 $Die_Cmd
+ssh aragorn $Die_Cmd
+ssh filevault $Die_Cmd
+

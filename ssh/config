@@ -1,0 +1,8 @@
+Host gameforce
+HostName vip.gameforce.ca
+Port 6622
+User darf
+
+Host *
+  ServerAliveInterval 30
+  ServerAliveCountMax 5

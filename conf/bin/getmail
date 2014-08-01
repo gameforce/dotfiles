@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/fetchmail -a -s -m "/usr/bin/procmail -d darf"

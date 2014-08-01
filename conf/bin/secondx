@@ -1,0 +1,3 @@
+#!/bin/bash
+DISPLAY=:1.0
+exec openbox-session
