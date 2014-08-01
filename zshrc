@@ -87,6 +87,7 @@ alias cd..='cd ..'
 alias h='history 1'
 alias grep='grep --color=auto'
 alias less='less -R'
+alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 alias diff='colordiff'
 alias poweroff='sudo /sbin/poweroff'
 alias reboot='sudo /sbin/reboot'
@@ -98,3 +99,5 @@ alias strip="sed -e 's/#.*//;/^\s*$/d' '$@'"
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias tcpdump="tcpdump -qtnnni"
 alias df="df -h"
+alias es='sudo eix-sync'
+alias ew='sudo emerge --update --newuse --deep @world'
