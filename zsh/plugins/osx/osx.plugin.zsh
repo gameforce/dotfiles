@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------
 
 function tab() {
-  local command="cd \\\"$PWD\\\""
+  local command="cd \\\"$PWD\\\"; clear; "
   (( $# > 0 )) && command="${command}; $*"
 
   the_app=$(
@@ -34,7 +34,7 @@ EOF
           launch session "Default Session"
           set current_session to current session
           tell current_session
-            write text "${command}; clear;"
+            write text "${command}"
           end tell
         end tell
       end tell
@@ -156,4 +156,41 @@ function trash() {
 
 function vncviewer() {
   open vnc://$@
+}
+
+# iTunes control function
+function itunes() {
+	local opt=$1
+	shift
+	case "$opt" in
+		launch|play|pause|stop|rewind|resume|quit)
+			;;
+		mute)
+			opt="set mute to true"
+			;;
+		unmute)
+			opt="set mute to false"
+			;;
+		next|previous)
+			opt="$opt track"
+			;;
+		vol)
+			opt="set sound volume to $1" #$1 Due to the shift
+			;;
+		""|-h|--help)
+			echo "Usage: itunes <option>"
+			echo "option:"
+			echo "\tlaunch|play|pause|stop|rewind|resume|quit"
+			echo "\tmute|unmute\tcontrol volume set"
+			echo "\tnext|previous\tplay next or previous track"
+			echo "\tvol\tSet the volume, takes an argument from 0 to 100"
+			echo "\thelp\tshow this message and exit"
+			return 0
+			;;
+		*)
+			print "Unknown option: $opt"
+			return 1
+			;;
+	esac
+	osascript -e "tell application \"iTunes\" to $opt"
 }
