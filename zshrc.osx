@@ -5,7 +5,8 @@ ZSH=$HOME/.dotfiles/zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="pygmalion"
+#ZSH_THEME="pygmalion"
+ZSH_THEME="avit"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -61,7 +62,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #keychain
 if [ -e `which keychain` ]
 then
-	eval `keychain --eval --agents ssh --inherit any id_rsa`
+	eval `keychain --eval --agents ssh id_rsa`
 else
 	echo -n "keychain is not installed, please install it first"
 fi
@@ -87,6 +88,7 @@ alias cd..='cd ..'
 alias h='history 1'
 alias grep='grep --color=auto'
 alias less='less -R'
+alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 alias diff='colordiff'
 alias poweroff='sudo /sbin/poweroff'
 alias reboot='sudo /sbin/reboot'
@@ -98,3 +100,5 @@ alias strip="sed -e 's/#.*//;/^\s*$/d' '$@'"
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias tcpdump="tcpdump -qtnnni"
 alias df="df -h"
+alias es='sudo eix-sync'
+alias ew='sudo emerge --update --newuse --deep @world'
