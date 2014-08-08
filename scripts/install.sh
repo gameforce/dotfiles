@@ -9,7 +9,7 @@ cp -r $HOME/.dotfiles/dircolors $HOME/.dircolors
 
 # copy files
 echo -n "Copying files..."
-cp $HOME/.dotfiles/zshrc $HOME/.zshrc
+cp $HOME/.dotfiles/zshrc.linux $HOME/.zshrc
 cp $HOME/.dotfiles/vimrc $HOME/.vimrc
 cp $HOME/.dotfiles/screenrc $HOME/.screenrc 
 
