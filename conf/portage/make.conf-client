@@ -12,7 +12,7 @@ ACCEPT_KEYWORDS="amd64"
 FEATURES="ccache collision-protect parallel-fetch buildpkg userfetch getbinpkg"
 CCACHE_DIR="/var/tmp/ccache"
 CCACHE_SIZE="2G"
-EMERGE_DEFAULT_OPTS="--ask --verbose --jobs -binpkg-respect-use=n"
+EMERGE_DEFAULT_OPTS="--ask --verbose --jobs --binpkg-respect-use=n"
 PORTAGE_NICENESS=3
 PORTAGE_BINHOST="http://192.168.11.4/funtoo/packages"
 MAKEOPTS="-j3" ##grep "processor" /proc/cpuinfo | wc -l
