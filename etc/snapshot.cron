@@ -1,0 +1,14 @@
+# crontab snapshots
+@reboot /usr/sbin/zpool scrub syspool
+@daily  /usr/sbin/zpool scrub syspool
+@hourly /usr/sbin/zpool status syspool | /usr/bin/egrep -q "scrub completed|none requested" && /usr/sbin/zfs snapshot -r syspool@AutoH-`date +"\%FT\%H:\%M"`
+@daily  /usr/sbin/zfs snapshot -r syspool@AutoD-`date +"\%F"`
+@weekly /usr/sbin/zfs snapshot -r syspool@AutoW-`date +"\%Y-\%U"`
+@monthly /usr/sbin/zfs snapshot -r syspool@AutoM-`date +"\%Y-\%m"`
+@yearly /usr/sbin/zfs snapshot -r syspool@AutoY-`date +"\%Y"`
+
+# do a spot of housecleaning - somewhat assumes the daily ones have run ..
+@hourly /usr/sbin/zpool status syspool | /usr/bin/egrep -q "scrub completed|none requested" && /usr/sbin/zfs list -t snapshot -o name | /usr/bin/grep syspool@AutoH- | /usr/bin/sort -r | /usr/bin/tail -n +26 | /usr/bin/xargs -n 1 /usr/sbin/zfs destroy -r
+@daily  /usr/sbin/zfs list -t snapshot -o name | /usr/bin/grep syspool@AutoD- | /usr/bin/sort -r | /usr/bin/tail -n +9 | /usr/bin/xargs -n 1 /usr/sbin/zfs destroy -r
+@weekly /usr/sbin/zfs list -t snapshot -o name | /usr/bin/grep syspool@AutoW- | /usr/bin/sort -r | /usr/bin/tail -n +7 | /usr/bin/xargs -n 1 /usr/sbin/zfs destroy -r
+@monthly /usr/sbin/zfs list -t snapshot -o name | /usr/bin/grep syspool@AutoM- | /usr/bin/sort -r | /usr/bin/tail -n +14 | /usr/bin/xargs -n 1 /usr/sbin/zfs destroy -r
