@@ -41,7 +41,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # environment
-export PATH="/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export PATH="/opt/csw/bin:/opt/csw/sbin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
 export MC_SKIN=$HOME/.mc/solarized.ini
 
@@ -80,3 +80,6 @@ alias halt='sudo /sbin/halt'
 alias fixperm='find . -type f -print0 | xargs -0 chmod 644; find . -type d -print0 | xargs -0 chmod 755'
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias df="df -h"
+
+# OPAM configuration
+. /home/darf/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
