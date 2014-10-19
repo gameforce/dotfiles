@@ -45,6 +45,10 @@ export PATH="/opt/csw/bin:/opt/csw/sbin:/usr/local/bin:/usr/local/sbin:/bin:/sbi
 export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
 export MC_SKIN=$HOME/.mc/solarized.ini
 
+# putty home/end
+bindkey "[1~" beginning-of-line
+bindkey "[4~" end-of-line
+
 # history
 export HISTSIZE=2000
 export HISTFILE="$HOME/.history"
