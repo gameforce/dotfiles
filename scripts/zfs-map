@@ -1,0 +1,610 @@
+#!/usr/bin/perl -w
+# Program         : check_zfs
+# Author          : Martin Collins
+# Purpose         : Check zpool status/filesystem usage
+################################################################################
+
+$| = 1;
+use strict;
+use English;
+use Sys::Hostname;
+use Data::Dumper;
+use Getopt::Long;
+use List::Util qw(max);
+use File::Basename;
+use vars qw($PROGNAME);
+
+################################################################################
+# Globals
+################################################################################
+my $PROGNAME = basename($0);
+my $PATH     = "/sbin:/bin:/usr/sbin:/usr/bin";
+my $zfs      = "zfs";
+my $hostname = hostname();
+my $result   = 0;
+my $output   = "";
+my $check    = ""; 
+my $checks   = 0; 
+my $q_list   = {}; # Quota Tree
+my %q_crit;        # Quota Critical
+my %q_absent;      # Quota Absent
+my %fs_list;       # FileSystem List
+
+################################################################################
+# NAGIOS STATUS
+################################################################################
+my $i = 0;
+my @nagios_errors = ("OK", "WARNING", "CRITICAL", "UNKNOWN", "DEPENDENT");
+my %nagios_status = map { $_ => $i++; } @nagios_errors;
+
+################################################################################
+# OPTIONS
+################################################################################
+
+# Checks to run
+my ( $opt_p, $opt_u, $opt_q, $opt_h, $opt_noq, $opt_d, $opt_print );
+
+# Carry up quota overflow
+my $opt_qup = 0;
+
+# Excludes
+my @opt_exclude;
+
+# Data Sources
+my $opt_ssh;
+my $opt_stdin;
+
+# Default Quota Warning/Critical Thresholds
+my $opt_warn = 85;
+my $opt_crit = 90;
+
+# Unallocated threshold
+my $opt_unalloc = 1048576; # 1MB
+
+# Which filesystem
+my $opt_fs = "";
+
+################################################################################
+# Subs
+################################################################################
+
+sub which {
+  my $tool = shift;
+  for my $path ( split /:/, $PATH ) {
+    if ( -f "$path/$tool" && -x _ ) {
+      return "$path/$tool";
+    }
+  }
+  return undef;
+}
+
+sub check_zpools() {
+  my %health_map = (
+    "ONLINE"   => $nagios_status{"OK"},
+    "DEGRADED" => $nagios_status{"CRITICAL"},
+  );
+
+  my $i = 0;
+  my $j = 0;
+  my @titles;
+
+  open(CMD, "/usr/sbin/zpool list $opt_fs 2>/dev/null |" );
+  POOL: while (<CMD>) {
+    chomp;
+    
+    my @values = split( /\s+/, $_ );
+    my %data;
+
+    if($i++ == 0) {
+      @titles = map { lc } @values;
+      next POOL;
+    } else {
+      $j = $#values;
+      while($j--) {
+        $data{$titles[$j]} = $values[$j];
+      }
+    }
+
+    for my $exclude (@opt_exclude) {
+      next POOL if $data{name} =~ /^$exclude$/;
+    }
+
+    # Always Output info
+    $output .= $data{name}.':'.$data{health}." ";
+    
+    # Get Status
+    my $v = defined($health_map{$data{health}}) ? $health_map{$data{health}} : 2;
+    $result = $v if $v > $result;
+    $i++;
+  }
+  if ($i == 0 && $opt_fs ne "") {
+    # No pool
+    $output = "Unknown pool $opt_fs";
+    $result = $nagios_status{"UNKNOWN"};
+  }
+}
+
+sub get_zfs_data() {
+  
+  my $cmd = "$zfs get -Hrp available,quota,used,usedbysnapshots,referenced,type $opt_fs 2>/dev/null |";
+  $cmd = "ssh root\@$opt_ssh $cmd" if ($opt_ssh);
+  $cmd = "<-" if ($opt_stdin);
+
+  open(CMD, $cmd);
+  while (<CMD>) {
+    chomp;
+    my ( $name, $prop, $value, $source) = split( /\s+/, $_ );
+    $fs_list{$name}{$prop} = $value;
+
+    my @parentage = split(/\//, $name);
+    my $parentcnt = $#parentage;
+
+    my $i = 0;
+    my $p = $q_list;
+    my $f = "";
+
+    # Always populate the tree
+    while ($i <= $parentcnt) {
+      my $leaf  = $i == $parentcnt;
+      my $pname = $parentage[$i];
+      $f .= $pname;
+
+      $p->{$pname} = { 'path' => $f, 'c' => {} } if !defined($p->{$pname});
+
+      # move p along one
+      $p = $p->{$pname};
+
+      # If i'm a leaf, populate options
+      if ($leaf && ($opt_q || $opt_noq)) {
+        # If we are opt_q, populate the tree
+        if ($prop eq "quota") {
+          if ($value ne "-" && $value != 0) {
+            # We have a quota just use the value
+            $p->{quota} = $value;
+          } else {
+            # We dont know what the referenced space is
+            # here until we collapse up the tree
+            # use a quota val of -1
+            $p->{quota} = -1;
+          }
+        } else {
+          $p->{$prop} = $value;
+        }
+      }
+
+      # And move onto child nodes
+      $p = $p->{c};
+      $f .= '/';
+      $i++;
+    }
+  }
+}
+
+sub check_zfs() {
+FS:
+  for my $fs (keys(%fs_list)) {
+
+    if ($fs_list{$fs}{"type"}  !~ /^(filesystem|volume)$/) {
+      print "Skipping $fs as not a filesystem/volume\n" if $opt_d;
+      next FS;
+    }
+
+    for my $exclude (@opt_exclude) {
+      if ($fs =~ /^$exclude($|\/)/) {
+        print "Skipping $fs as excluded\n" if $opt_d;
+        next FS;
+      }
+    }
+
+    print "Processing check_zfs for $fs\n" if $opt_d;
+    
+    my $total = $fs_list{$fs}{"used"} + $fs_list{$fs}{"available"};
+    my $pc    = 100 * $fs_list{$fs}{"used"} / $total;
+
+    if ($pc > $opt_crit) {
+      $result  = $nagios_status{"CRITICAL"} if $result < $nagios_status{"CRITICAL"};
+      $output .= sprintf("%s:%.0f%% ", $fs, $opt_crit);
+    } elsif ($pc > $opt_warn) {
+      $result  = $nagios_status{"WARNING"} if $result < $nagios_status{"WARNING"};
+      $output .= sprintf("%s:%.0f%% ", $fs, $opt_warn);
+    }
+  }
+}
+
+sub collapse_quotas {
+
+  my $root   = $_[0];
+  my $depth  = defined($_[1])  ? $_[1] : 0;
+  my $pquota = defined($_[2]) && $_[2] == 1; # does any parent have a quota assigned
+
+  my @children = keys(%{$root->{c}});
+  my $cquota   = 0; # Child Quota Addition - Explicit
+  my $uquota   = 0; # Child Quota Addition - Used Data
+
+  # next if snapshot
+  if ($root->{type}  !~ /^(filesystem|volume)$/) {
+    print "Skipping ".$root->{path}." as not a filesystem/volume\n" if $opt_d;
+    return;
+  }
+
+  if($#children >= 0) {
+    foreach my $c (@children) {
+      collapse_quotas($root->{c}{$c}, $depth+1, $depth != 0 && ($pquota || defined($root->{quota}) && $root->{quota} > 0));
+    }
+
+    # all children of node processd, add up quotas
+    foreach my $c (@children) {
+      $cquota += $root->{c}{$c}{cquota} if defined($root->{c}{$c}{cquota});
+      $uquota += $root->{c}{$c}{uquota} if defined($root->{c}{$c}{uquota});
+    }
+
+    # Now we need to set my cquota correctly for parent node
+    if(defined($root->{quota}) && $root->{quota} != 0) {
+      if ($root->{quota} > 0) {
+        # Do I have a quota, if so, do my children exceed it?
+        # If so this needs to be alerted
+        my $over = $cquota - $root->{quota};
+        $q_crit{$root->{path}}{"quota"} = $over if $over > 0;
+        
+        # Set my cquota to that of quota, so we dont
+        # carry the previous over allocation up the tree
+        # unless opt_qup is set or we are the root node
+        $root->{cquota} = ($opt_qup && $over > 0) || $depth == 0 ? $cquota : $root->{quota};
+
+        # If i have a quota, i can't have unallocated quotas for children
+        print "Setting ".$root->{path}." quota to 0 (has quota)\n" if $opt_d;
+        $root->{uquota} = 0;
+      } else {
+        # quota <= 0 - so must be no quota, add up previous uquota
+        $root->{cquota} = $cquota;
+        $root->{uquota} = $root->{referenced} + $uquota;
+        print "Setting ".$root->{path}." quota to ".$root->{uquota}." (referenced+children)\n" if $opt_d;
+      }
+    } else {
+      # We set my quota to that of child nodes
+      $root->{cquota} = $cquota;
+      $root->{uquota} = $uquota;
+      print "Setting ".$root->{path}." quota to ".$root->{uquota}." (children quota)\n" if $opt_d;
+    }
+  } else {
+    # I have no children - leaf node
+    # if pquota == 0 then alert 
+    my $exclude_found = 0;
+    if ($pquota == 0 && (!defined($root->{quota}) || $root->{quota} <= 0)) {
+      for my $exclude (@opt_exclude) {
+        if($root->{path} =~ /^$exclude($|\/)/) {
+          $exclude_found = 1;
+          last;
+        }
+      }
+      $q_absent{$root->{path}} = 1 if !$exclude_found; # $pquota == 0;# && !$exclude_found;
+    }
+    
+    # if I have a quota, use that unless used-as-quota
+    # then use referenced size
+    if(defined($root->{quota})) {
+      if($root->{quota} == -1) {
+        print "Setting ".$root->{path}." quota to ".$root->{referenced}." (leaf node referenced)\n" if $opt_d;
+        $root->{uquota} = $root->{referenced};
+      } else {
+        $root->{cquota} = $root->{quota};
+      }
+    }
+  }
+
+  if($depth == 0) {
+    # how much is unallocated - if so wwarn
+    $q_crit{$root->{path}}{unallocated} = $uquota if $uquota > $opt_unalloc;
+  }
+}
+
+sub sizeof_fmt {
+  my $num = $_[0];
+  for my $x ('bytes', 'KB', 'MB', 'GB', 'TB') {
+    if($num < 1024) {
+      return sprintf("%3.2f %s", $num, $x);
+    }
+    $num /= 1024;
+  }
+}
+
+sub collect_tree {
+
+  my $root   = $_[0];
+  my $name   = $_[1];
+  my $output = $_[2];
+  my $depth  = defined($_[3]) ? $_[3] : 0;
+  
+  # next if snapshot
+  if ($root->{type}  !~ /^(filesystem|volume)$/) {
+    print "Skipping ".$root->{path}." as not a filesystem/volume\n" if $opt_d;
+    return;
+  }
+
+  my @notes;
+  my $color = undef;
+  my $utilisation = (1-$root->{available}/($root->{used} + $root->{available})) * 100;
+
+
+  # CRIT/WARNING messages
+  if ($root->{quota} != -1 && $root->{cquota} > $root->{quota}) {
+    push @notes, "Overallocated Quota";
+    $color = 31;
+  }
+
+  if ($depth == 0 && $root->{quota} == -1) {
+    push @notes, "No Root Quota";
+    $color = 31;
+  }
+
+  if ($utilisation > $opt_crit) {
+    push @notes, 'Crit Limit Exceeded';
+    $color = 31;
+  } elsif ($utilisation > $opt_warn) {
+    push @notes, 'Warn Limit Exceeded';
+    $color = 33 if !defined($color) || $color != 31;
+  }
+
+  # Get my children, so we can output cquota or empty
+  # and recurse
+  my @children = keys(%{$root->{c}});
+
+  push @{$output}, [
+                    '  ' x $depth. $name,
+                    $root->{quota} == "-1" ? '' : sizeof_fmt($root->{quota}),
+                    $#children >= 0 && $root->{cquota} > 0 ? sizeof_fmt($root->{cquota}) : '',
+                    sizeof_fmt($root->{used}),
+                    sizeof_fmt($root->{available}),
+                    $root->{usedbysnapshots} > 1024 ? sizeof_fmt($root->{usedbysnapshots}) : '',
+                    (sprintf "%.2f%%", $utilisation),
+                    join(", ", @notes),
+                    $color,
+                   ];
+
+  # Now we do recurse for each child
+  if($#children >= 0) {
+    foreach my $c (@children) {
+      collect_tree($root->{c}{$c}, $c, $output, $depth+1);
+    }
+  }
+}
+
+sub print_tree {
+  my $table = $_[0];
+
+  # Max column lengths
+  my $cols = $#{@{$table}[0]} + 1;
+  my @max;
+
+  for (my $i=0; $i < $cols; $i++) {
+    $max[$i] = max(map { length ($_->[$i]) } @{$table});
+  }
+
+  # Now print the headline
+  for (my $i=0; $i < $cols; $i++) { print "+-" . '-' x $max[$i] . "-"; }; print "+\n";
+
+  # Titles
+  my @titles = @{shift(@{$table})};
+  for (my $i=0; $i < $cols; $i++) { printf "| %-*s ", $max[$i], $titles[$i] }; print "|\n";
+
+  # Now print the headline
+  for (my $i=0; $i < $cols; $i++) { print "+-" . '-' x $max[$i] . "-"; }; print "+\n";
+
+  # And now each row
+  for my $row (@{$table}) {
+    if (defined $row->[$cols]) {
+      # First column left aligned
+      my $color = $row->[$cols];
+      printf "|\033[%02im %-*s \033\[0m", $color, $max[0], $row->[0];
+      for (my $i=1; $i < $cols; $i++) { printf "|\033[%02im %*s \033\[0m", $color, $max[$i], $row->[$i] }; print "|\n";
+    } else {
+      # First column left aligned
+      printf "| %-*s ", $max[0], $row->[0];
+      for (my $i=1; $i < $cols; $i++) { printf "| %*s ", $max[$i], $row->[$i] }; print "|\n";
+    }
+  }
+
+  # Now print the headline
+  for (my $i=0; $i < $cols; $i++) { print "+-" . '-' x $max[$i] . "-"; }; print "+\n";
+  
+}
+
+sub print_quotas {
+  # Name, Size, Quota, Child Quotas, used, free, snapshots, utilisation
+  my @table = [["Filesystem", "Quota Set", "Child Quotas", "Used", "Free", "Snap", "Utilisation", "Notes"]];
+  TREE: for my $pool (keys(%{$q_list})) {
+
+    for my $exclude (@opt_exclude) {
+      next TREE if($pool =~ /^$exclude($|\/)/);
+    }
+
+    collapse_quotas($q_list->{$pool});
+    
+    # Now we loop through appending rows
+    collect_tree($q_list->{$pool}, $pool, @table);
+
+  }
+
+  # Now dump the table
+  print_tree(@table);
+}
+
+sub check_quotas {
+  # Now we recurse through the quota tree
+  for my $pool (keys(%{$q_list})) {
+    collapse_quotas($q_list->{$pool});
+  }
+
+  if($opt_q) {
+    # And print the output
+    Q_PRINT: for my $fs (keys(%q_crit)) {
+      for my $exclude (@opt_exclude) {
+        next Q_PRINT if($fs =~ /^$exclude($|\/)/);
+      }
+      $result  = $nagios_status{'CRITICAL'};
+      $output .= "$fs: ";
+      $output .= sizeof_fmt($q_crit{$fs}{quota})." Over, " if (defined($q_crit{$fs}{quota}) && $q_crit{$fs}{quota} > 0);
+      $output .= sizeof_fmt($q_crit{$fs}{unallocated})." Not assigned to quotas, " if (defined($q_crit{$fs}{unallocated}) && $q_crit{$fs}{unallocated} > 0);
+    }
+  } elsif($opt_noq) { 
+    for my $missing (sort(keys(%q_absent))) {
+      $result  = $nagios_status{'WARNING'};
+      $output .= sprintf("%s, ", $missing);
+    }
+  }
+}
+
+sub unknown_hash_empty {
+  if (!%fs_list) {
+    $result = $nagios_status{'UNKNOWN'};
+    $output = "Unkown filesystem: $opt_fs" if $opt_fs ne "";
+  }
+}
+
+sub show_help() {
+
+  if ($PROGNAME ne "zfs-map") {
+    print "Usage: $PROGNAME [CHECK] [OPTIONS]\n";
+  } else {
+    print "Usage: $PROGNAME [OPTIONS] [HOSTNAME]\n";
+  }
+  print "\n";
+
+  if ($PROGNAME ne "zfs-map") {
+    print "  CHECKS:\n";
+    print "    --print            Print Quota Information\n";
+    print "    --pools            Check Pool Status\n";
+    print "    --usage            Check free space based on used/avail\n";
+    print "    --quota            Check for quota over-allocation\n";
+    print "    --no-quota         Check for filesystems with no quotas between root and itself\n";
+    print "\n";
+  }
+  print "  OPTIONS:\n";
+
+  if ($PROGNAME ne "zfs-map") {
+    print "    --ssh              option for --quota\n";
+    print "                       ssh to the given head to collect filessytem info\n";
+    print "    --stdin            option for --quota\n";
+    print "                       take the zfs list command from stdin instead of running locally\n";
+    print "    --exclude          option for --pools, --usage or --print\n";
+  } else {
+    print "    --exclude          Skip filesystems starting with..(allowed multiple)\n";
+    print "                       Default: [syspool, rpool]\n";
+  }
+
+  print "    --quota-up         option for --quota\n";
+  print "                       If the child filesystem's quotas adds up to more than the parent's\n";
+  print "                       quote use the addition of the child's quotas rather than the parent's\n";
+  print "                       quota when calculating if the parent's parent is over allocated\n";
+  print "    --fs               only display information for the given filesystem\n";
+  print "    --warn             Warning  Threshold for --usage\n";
+  print "    --crit             Critical Threshold for --usage\n";
+  print "    --debug            Debug messages\n";
+  print "    --help -h          Show this help\n";
+  print "\n";
+  exit 0;
+}
+
+################################################################################
+# Main
+################################################################################
+
+Getopt::Long::Configure('bundling');
+GetOptions(
+  "pools"           => \$opt_p,
+  "print"           => \$opt_print,
+  "usage"           => \$opt_u,
+  "quota"           => \$opt_q,
+  "quota-up"        => \$opt_qup,
+  "no-quota"        => \$opt_noq,
+  "help"            => \$opt_h,
+  "h"               => \$opt_h,
+  "debug"           => \$opt_d,
+  "d"               => \$opt_d,
+  "fs=s"            => \$opt_fs,
+  "ssh=s"           => \$opt_ssh,
+  "warn=i"          => \$opt_warn,
+  "crit=i"          => \$opt_crit,
+  "stdin"           => \$opt_stdin,
+  "exclude=s"       => \@opt_exclude,
+);
+
+# Ensure just one check running:
+$checks++ if $opt_p;
+$checks++ if $opt_q;
+$checks++ if $opt_u;
+$checks++ if $opt_noq;
+$checks++ if $opt_print;
+
+################################################################################
+# INVOCATION OVERRIDES
+################################################################################
+
+# If we have invoked this as zfs-map, set parameters accordingly
+if ($PROGNAME eq "zfs-map") {
+
+  # If zfs command does not exists
+  my $findzfs = which('zfs');
+  if ($findzfs) {
+    # use it 
+    $zfs = $findzfs;
+  } else {
+    show_help() if !defined($ARGV[0]);
+    $opt_ssh   = $ARGV[0];
+  }
+
+  # If no explicit excludes, default to exclude syspool/rpool
+  @opt_exclude = ("rpool", "syspool") unless @opt_exclude;
+
+  # We want to set print
+  $opt_print = 1;
+  $checks++;
+}
+
+show_help() if $checks != 1 or $opt_h;
+
+if($opt_p) {
+  check_zpools();
+  $check = "Pool";
+}
+
+if ($opt_print) {
+  # If we printing out quota we just
+  # we need to collect quota and quota_up
+  $opt_q   = 1;
+  $opt_qup = 1;
+}
+
+if($opt_u || $opt_q || $opt_noq) {
+  get_zfs_data();
+}
+
+print_quotas() if $opt_print;
+
+if($opt_u) {
+  unknown_hash_empty();
+  check_zfs();
+  $check = "Usage";
+}
+
+if($opt_q) {
+  # check_zfs has now populated pools, now add them up
+  unknown_hash_empty();
+  check_quotas();
+  $check = "Overallocated Quota";
+}
+
+if($opt_noq) {
+  # check_zfs has now populated pools, now add them up
+  unknown_hash_empty();
+  check_quotas();
+  $check = "Missing Quotas";
+}
+
+# Clean up output
+$output =~ s/[ ,:]+$//;
+
+# If we don't null end it, nrpe response gets junk characters
+printf("%s%s\n\0", $nagios_errors[$result], length($output) > 0 ? ": $check: $output" : "") unless $opt_print;
+
+exit $result;
