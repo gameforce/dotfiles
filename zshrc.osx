@@ -100,5 +100,3 @@ alias strip="sed -e 's/#.*//;/^\s*$/d' '$@'"
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias tcpdump="tcpdump -qtnnni"
 alias df="df -h"
-alias es='sudo eix-sync'
-alias ew='sudo emerge --update --newuse --deep @world'
