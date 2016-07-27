@@ -1,13 +1,18 @@
 
 # environment
 export PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/data/systems/bin:$PATH
+
+# puppet path
+export PATH=/opt/puppetlabs/bin:$PATH
+
+# Editor
 export EDITOR=/usr/bin/vim
 
 # completion
 source /etc/profile.d/bash_completion.sh
 
 #colors
-#eval $(dircolors $HOME/.dircolors/dircolors.256dark)
+eval $(dircolors $HOME/.dircolors/dircolors.256dark)
 
 #prompt
 # uncomment for a colored prompt, if the terminal has the capability; turned
