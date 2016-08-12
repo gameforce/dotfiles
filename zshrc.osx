@@ -43,7 +43,7 @@ source $ZSH/oh-my-zsh.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # environment
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/share/man:${MANPATH}"
 export MC_SKIN=$HOME/.mc/solarized.ini
 
