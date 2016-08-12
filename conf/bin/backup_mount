@@ -1,2 +1,0 @@
-#!/bin/bash
-mount_smbfs //readyshare/Backup /Volumes/Backup

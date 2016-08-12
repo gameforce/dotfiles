@@ -1,2 +1,0 @@
-#!/bin/bash 
-/usr/bin/dbus-launch --exit-with-session /usr/bin/xbmc-standalone
