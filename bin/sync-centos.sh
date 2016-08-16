@@ -1,8 +1,9 @@
 #!/bin/sh
-# reposync -- centos
-# /var/www/html/sync-centos.sh
+# yum install yum-utils createrepo -y
+# CentOS mirror
+# cd /srv/repo
 
-BASEDIR=/var/www/html/centos/6
+BASEDIR=/srv/repo/centos/6
 mkdir -p $BASEDIR
 cd $BASEDIR
 
@@ -13,6 +14,3 @@ createrepo updates
 reposync -n -r base --downloadcomps
 repomanage -o -c base | xargs rm -fv
 createrepo base -g comps.xml
-
-chmod 755 sync-centos.sh
-sh sync-centos.sh

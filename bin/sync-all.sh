@@ -1,5 +1,5 @@
 #!/bin/sh
 # update all repos
 
-cd /var/www/html
+cd /srv/repo
 for i in ls | grep sync; do sh $i; done
