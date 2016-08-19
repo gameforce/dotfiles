@@ -6,7 +6,7 @@ ZSH=$HOME/.dotfiles/zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="pygmalion"
-ZSH_THEME="avit"
+ZSH_THEME="gentoo"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -56,7 +56,7 @@ export SAVEHIST=$HISTSIZE
 export CLICOLOR=1
 
 # colors (gnu)
-eval $(dircolors $HOME/.dircolors/dircolors.ansi-universal)
+eval $(dircolors $HOME/.dotfiles/dircolors/dircolors.ansi-universal)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #keychain
