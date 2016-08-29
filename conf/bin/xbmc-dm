@@ -1,2 +1,0 @@
-#!/bin/bash 
-/bin/su darf -l -c "/bin/bash --login -c startx >/dev/null 2>&1"

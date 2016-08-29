@@ -16,7 +16,7 @@ ZSH_THEME="gentoo"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="no"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -41,9 +41,8 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # environment
-export PATH="/opt/csw/bin:/opt/csw/sbin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export PATH="/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
-export MC_SKIN=$HOME/.mc/solarized.ini
 
 # putty home/end
 bindkey "[1~" beginning-of-line
@@ -55,16 +54,16 @@ export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
 # colors (gnu)
-eval $(dircolors $HOME/.dircolors/dircolors.ansi-dark)
+eval $(dircolors $HOME/.dotfiles/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #keychain
-if [ -e `which keychain` ]
-then
-	eval `keychain --eval --agents ssh id_rsa`
-else
-	echo -n "keychain is not installed, please install it first"
-fi
+#if [ -e `which keychain` ]
+#then
+#	eval `keychain --eval --agents ssh id_rsa`
+#else
+#	echo -n "keychain is not installed, please install it first"
+#fi
 
 # aliases
 alias ls='ls --color'
@@ -86,6 +85,3 @@ alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias df="df -h"
 alias es='sudo eix-sync'
 alias ew='sudo emerge --update --newuse --deep @world'
-
-# OPAM configuration
-. /home/darf/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
