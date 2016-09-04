@@ -63,7 +63,7 @@ source "`brew --prefix`/etc/grc.bashrc"
 #keychain
 if [ -e `which keychain` ]
 then
-	eval `keychain --eval --agents ssh id_rsa`
+	eval `keychain --eval --agents ssh id_dsa`
 else
 	echo -n "keychain is not installed, please install it first"
 fi
