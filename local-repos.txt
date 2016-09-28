@@ -5,7 +5,7 @@ yum install yum-utils createrepo -y
 
 CentOS mirror
 
-cd /var/www/html
+cd /var/www/kam
 
 cat << EOF > sync-centos.sh
 #!/bin/sh
@@ -13,7 +13,7 @@ cat << EOF > sync-centos.sh
 # reposync
 #
 
-BASEDIR=/var/www/html/centos/6
+BASEDIR=/var/www/kam/centos/7
 mkdir -p \$BASEDIR
 cd \$BASEDIR
 
@@ -32,8 +32,8 @@ sh sync-centos.sh
 EPEL mirror
 ===========
 
-rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-cd /var/www/html
+rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+cd /var/www/kam
 
 cat << EOF > sync-epel.sh
 #!/bin/sh
@@ -41,7 +41,7 @@ cat << EOF > sync-epel.sh
 # reposync
 #
 
-BASEDIR=/var/www/html/centos/6
+BASEDIR=/var/www/kam/centos/7
 mkdir -p \$BASEDIR
 cd \$BASEDIR
 
@@ -53,8 +53,31 @@ EOF
 chmod 755 sync-epel.sh
 sh sync-epel.sh
 
-Update all
-==========
+EPEL mirror
+===========
 
-cd /var/www/html
-for i in ls | grep sync; do sh $i; done
+rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+cd /var/www/kam
+
+cat << EOF > sync-puppet.sh
+#!/bin/sh
+#
+# reposync
+#
+
+BASEDIR=/var/www/kam/centos/7
+mkdir -p \$BASEDIR
+cd \$BASEDIR
+
+reposync -n -r puppet
+repomanage -o -c puppet | xargs rm -fv
+createrepo puppet
+EOF
+
+chmod 755 sync-puppet.sh
+sh sync-puppet.sh
+
+Update all Cron
+===============
+
+* * * * * cd /var/www/kam; sh $(ls | grep sync)
