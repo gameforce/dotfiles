@@ -63,7 +63,7 @@ source "`brew --prefix`/etc/grc.bashrc"
 #keychain
 if [ -e `which keychain` ]
 then
-	eval `keychain --eval --agents ssh id_dsa`
+	eval `keychain --eval --agents ssh id_rsa`
 else
 	echo -n "keychain is not installed, please install it first"
 fi
@@ -101,3 +101,4 @@ alias strip="sed -e 's/#.*//;/^\s*$/d' '$@'"
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias tcpdump="tcpdump -qtnnni"
 alias df="df -h"
+alias razor="/usr/local/bin/razor -u http://razor:8150/api"
