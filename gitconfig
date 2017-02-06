@@ -1,8 +1,8 @@
 [push]
 	default = matching
 [user]
-	name = Nick Gotsinas
-	email = darf@gameforce.ca
+	name = Nick
+	email = nick@gameforce.net
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -20,3 +20,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[core]
+	excludesfile = /Users/darf/.gitignore_global
+[commit]
+	template = /Users/darf/.stCommitMsg

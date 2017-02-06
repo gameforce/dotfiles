@@ -47,6 +47,9 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/puppetlabs/bin:/usr/lo
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/share/man:${MANPATH}"
 export MC_SKIN=$HOME/.mc/solarized.ini
 
+# options
+setopt interactivecomments
+
 # history
 export HISTSIZE=2000
 export HISTFILE="$HOME/.history"
