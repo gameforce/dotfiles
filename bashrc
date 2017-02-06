@@ -12,7 +12,7 @@ export EDITOR=/usr/bin/vim
 source /etc/profile.d/bash_completion.sh
 
 #colors
-eval $(dircolors $HOME/.dircolors/dircolors.256dark)
+eval $(dircolors $HOME/.dotfiles/dircolors/dircolors.256dark)
 
 #prompt
 # uncomment for a colored prompt, if the terminal has the capability; turned
