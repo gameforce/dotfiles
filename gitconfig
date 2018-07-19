@@ -1,8 +1,8 @@
 [push]
-	default = matching
+	default = simple
 [user]
-	name = Nick
-	email = nick@gameforce.net
+	name = Nick Gotsinas
+	email = nick.gotsinas@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
