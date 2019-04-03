@@ -58,12 +58,12 @@ eval $(dircolors $HOME/.dotfiles/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #keychain
-#if [ -e `which keychain` ]
-#then
-#	eval `keychain --eval --agents ssh id_rsa`
-#else
-#	echo -n "keychain is not installed, please install it first"
-#fi
+if [ -e `which keychain` ]
+then
+	eval `keychain --eval --agents ssh id_rsa`
+else
+	echo -n "keychain is not installed, please install it first"
+fi
 
 # aliases
 alias ls='ls --color'
