@@ -65,6 +65,9 @@ else
 	echo -n "keychain is not installed, please install it first"
 fi
 
+#screenfetch
+.dotfiles/bin/screenfetch-dev
+
 # aliases
 alias ls='ls --color'
 alias l.='ls -d .*'
