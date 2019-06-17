@@ -41,7 +41,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # environment
-export PATH="/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export PATH="/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:~/.dotfiles/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
 
 # putty home/end
@@ -79,7 +79,7 @@ alias cl="clear; reset"
 alias j="jobs -l"
 alias cd..='cd ..'
 alias h='history 1'
-alias less='/usr/share/vim/vim74/macros/less.sh'
+alias less='/usr/share/vim/vim??/macros/less.sh'
 alias poweroff='sudo /sbin/poweroff'
 alias reboot='sudo /sbin/reboot'
 alias halt='sudo /sbin/halt'
