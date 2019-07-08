@@ -4,9 +4,6 @@
 [submodule "powerline"]
 	path = powerline
 	url = https://github.com/powerline/powerline.git
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
