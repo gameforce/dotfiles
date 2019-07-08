@@ -9,4 +9,5 @@ ln -s $HOME/.dotfiles/fonts $HOME/.fonts
 ln -s $HOME/.dotfiles/dircolors $HOME/.dircolors
 ln -s $HOME/.dotfiles/gitconfig $HOME/.gitconfig
 ln -s $HOME/.dotfiles/bin $HOME/bin
+ln -s $HOME/.dotfiles/tmux.conf $HOME/.tmux.conf
 echo "Done!"
