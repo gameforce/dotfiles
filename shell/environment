@@ -1,0 +1,12 @@
+# environment
+export PATH="~/.local/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:~/.dotfiles/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
+
+# putty home/end
+bindkey "[1~" beginning-of-line
+bindkey "[4~" end-of-line
+
+# history
+export HISTSIZE=2000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE

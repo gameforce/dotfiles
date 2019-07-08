@@ -10,6 +10,7 @@
     ~/.aliases: shell/aliases
     ~/.functions: shell/functions
     ~/.zshrc: shell/zshrc
+    ~/.zshrc: shell/environment
     # Linters
     # ~/.eslintrc: linters/.eslintrc
     # Git
