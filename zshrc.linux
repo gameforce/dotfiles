@@ -7,8 +7,9 @@ ZSH=$HOME/.dotfiles/zsh
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="pygmalion"
 #ZSH_THEME="agnoster"
-ZSH_THEME="powerline/powerline/bindings/zsh/powerline.zsh"
-DEFAULT_USER=$USER
+#ZSH_THEME="powerline"
+#DEFAULT_USER=$USER
+source /usr/share/powerline/bindings/zsh/powerline.zsh
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -43,7 +44,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # environment
-export PATH="/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:~/.dotfiles/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export PATH="~/.local/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:~/.dotfiles/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
 
 # putty home/end
@@ -91,3 +92,6 @@ alias df="df -h"
 alias ta='tmux attach'
 alias td='tmux detach'
 alias tx='tmux'
+
+# set prompt
+source /usr/share/powerline/bindings/zsh/powerline.zsh

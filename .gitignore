@@ -7,5 +7,3 @@ custom
 *.swp
 !custom/example.zshcache
 cache/
-fonts/
-powerline/
