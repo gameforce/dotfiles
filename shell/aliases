@@ -1,0 +1,21 @@
+# aliases
+alias ls='ls --color'
+alias l.='ls -d .*'
+alias ll='ls -ahl'
+alias l="ls -a -F -b -T 0 -h --group-directories-first"
+alias rm="rm -i"
+alias vi="vim -X"
+alias cl="clear; reset"
+alias j="jobs -l"
+alias cd..='cd ..'
+alias h='history 1'
+alias less='/usr/share/vim/vim??/macros/less.sh'
+alias poweroff='sudo /sbin/poweroff'
+alias reboot='sudo /sbin/reboot'
+alias halt='sudo /sbin/halt'
+alias fixperm='find . -type f -print0 | xargs -0 chmod 644; find . -type d -print0 | xargs -0 chmod 755'
+alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
+alias df="df -h"
+alias ta='tmux attach'
+alias td='tmux detach'
+alias tx='tmux'

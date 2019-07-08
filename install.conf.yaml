@@ -1,0 +1,23 @@
+# install.conf.yaml
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    # Shell stuff
+    ~/.aliases: shell/aliases
+    ~/.functions: shell/functions
+    ~/.zshrc: shell/zshrc
+    # Linters
+    # ~/.eslintrc: linters/.eslintrc
+    # Git
+    ~/.gitconfig: git/.gitconfig
+    ~/.gitignore: git/.gitignore
+    # Apps
+    #~/.hammerspoon: applications/.hammerspoon
+    #~/.zazurc.json: applications/.zazurc.json
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
