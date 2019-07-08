@@ -13,8 +13,8 @@
     # Linters
     # ~/.eslintrc: linters/.eslintrc
     # Git
-    ~/.gitconfig: gitconfig
-    ~/.gitignore: .gitignore
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore: git/gitignore
     # Apps
     #~/.hammerspoon: applications/.hammerspoon
     #~/.zazurc.json: applications/.zazurc.json
