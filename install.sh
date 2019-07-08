@@ -11,3 +11,6 @@ ln -s $HOME/.dotfiles/gitconfig $HOME/.gitconfig
 ln -s $HOME/.dotfiles/bin $HOME/bin
 ln -s $HOME/.dotfiles/tmux.conf $HOME/.tmux.conf
 echo "Done!"
+echo "Installing fonts..."
+sh dotfiles/fonts/install.sh
+echo "Done!"
