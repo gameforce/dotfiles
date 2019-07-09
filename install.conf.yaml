@@ -11,6 +11,7 @@
     ~/.functions: shell/functions
     ~/.environment: shell/environment
     ~/.zshrc: shell/zshrc
+    ~/.vimrc: vim/vimrc
     # Linters
     # ~/.eslintrc: linters/.eslintrc
     # Git
