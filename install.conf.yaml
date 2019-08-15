@@ -7,6 +7,7 @@
 
 - link:
     # Shell stuff
+    ~/.dotfiles: /home/darf/git/dotfiles
     ~/.aliases: shell/aliases
     ~/.functions: shell/functions
     ~/.environment: shell/environment
