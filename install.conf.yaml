@@ -7,7 +7,6 @@
 
 - link:
     # Shell stuff
-    ~/.dotfiles: ~/git/dotfiles
     ~/.aliases: shell/aliases
     ~/.functions: shell/functions
     ~/.environment: shell/environment

@@ -10,4 +10,4 @@ bindkey "[4~" end-of-line
 export HISTSIZE=2000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
-export TERM=screen-256color
+export TERM=xterm-256color
