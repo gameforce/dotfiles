@@ -12,6 +12,7 @@
     ~/.environment: shell/environment
     ~/.zshrc: shell/zshrc
     ~/.vimrc: vim/vimrc
+    ~/.vim: vim
     # Linters
     # ~/.eslintrc: linters/.eslintrc
     # Git
