@@ -2,7 +2,7 @@
 	default = simple
 [user]
 	name = Nick Gotsinas
-	email = nick.gotsinas@gmail.com
+	email = gotsinas.nick@uqam.ca
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
