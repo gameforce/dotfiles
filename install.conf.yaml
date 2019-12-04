@@ -8,8 +8,11 @@
 - link:
     # Shell stuff
     ~/.aliases: shell/aliases
+    ~/.bin: bin
+    ~/.dircolors: dircolors
     ~/.functions: shell/functions
     ~/.environment: shell/environment
+    ~/.fonts: fonts
     ~/.zshrc: shell/zshrc
     ~/.vimrc: vim/vimrc
     ~/.vim: vim

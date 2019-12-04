@@ -1,5 +1,5 @@
 # environment
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:~/.dotfiles/antigen/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:~/.dotfiles/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:~/git/dotfiles/antigen/bin:/opt/puppetlabs/bin:/opt/puppetlabs/puppet/bin:~/.bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man:${MANPATH}"
 
 # putty home/end
