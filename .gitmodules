@@ -16,6 +16,3 @@
 [submodule "themes/gnome"]
 	path = themes/gnome
 	url = https://github.com/GalaticStryder/gnome-terminal-colors-dracula
-[submodule "tmux-airline-dracula"]
-	path = tmux-airline-dracula
-	url = https://github.com/sei40kr/tmux-airline-dracula.git
