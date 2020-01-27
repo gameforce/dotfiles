@@ -16,6 +16,4 @@ alias halt='sudo /sbin/halt'
 alias fixperm='find . -type f -print0 | xargs -0 chmod 644; find . -type d -print0 | xargs -0 chmod 755'
 alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias df="df -h"
-alias ta='tmux attach'
-alias td='tmux detach'
-alias tx='tmux'
+alias ta='tmux new-session -A -s main'
