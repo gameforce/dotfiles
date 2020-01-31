@@ -13,3 +13,6 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+[submodule "themes/gnome"]
+	path = themes/gnome
+	url = https://github.com/GalaticStryder/gnome-terminal-colors-dracula

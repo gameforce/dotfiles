@@ -1,6 +1,6 @@
 # functions
 # colors (gnu)
-eval $(dircolors $HOME/.dotfiles/dircolors/dircolors.ansi-dark)
+eval $(dircolors $ZSH_BASE/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #keychain
@@ -12,4 +12,4 @@ else
 fi
 
 #screenfetch
-.dotfiles/bin/screenfetch-dev
+$HOME/git/dotfiles/bin/screenfetch-dev
