@@ -12,4 +12,4 @@ else
 fi
 
 #screenfetch
-.bin/screenfetch-dev
+$HOME/git/dotfiles/bin/screenfetch-dev
