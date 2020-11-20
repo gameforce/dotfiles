@@ -23,6 +23,7 @@ case `uname` in
   ;;
   Linux)
     # Commands for Linux go here
+    git -C $HOME/.dotfiles pull
   ;;
 esac
 
