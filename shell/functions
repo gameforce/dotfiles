@@ -3,7 +3,7 @@
 eval $(dircolors $ZSH_BASE/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-#keychain
+# keychain
 if [ -e `which keychain` ]
 then
 	eval `keychain --eval --agents ssh id_rsa`
@@ -11,5 +11,15 @@ else
 	echo -n "keychain is not installed, please install it first"
 fi
 
-#screenfetch
-$HOME/git/dotfiles/bin/screenfetch-dev
+# screenfetch
+$HOME/.dotfiles/bin/screenfetch-dev
+
+# tmux new
+tn() {
+	tmux new -s "$1";
+}
+
+# tmux attach
+ta() {
+	tmux attach -t "$1";
+}
