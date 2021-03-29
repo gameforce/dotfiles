@@ -11,12 +11,10 @@ antigen use oh-my-zsh # Yes, I want to use Oh My ZSH
 
 # Terminal stuff
 antigen bundle git
+antigen bundle kubectl
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-autosuggestions
-
-# plugins
-plugins=(git brew history kubectl puppet)
 
 # Do OS dependant stuff
 case `uname` in
