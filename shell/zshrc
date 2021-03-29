@@ -15,6 +15,9 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-autosuggestions
 
+# plugins
+plugins=(git brew history kubectl puppet)
+
 # Do OS dependant stuff
 case `uname` in
   Darwin)
