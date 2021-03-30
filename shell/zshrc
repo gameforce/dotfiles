@@ -34,3 +34,4 @@ antigen theme agnoster
 # And lastly, apply the Antigen stuff
 antigen apply
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
+source .antigen/bundles/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh
