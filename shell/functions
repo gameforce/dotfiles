@@ -11,8 +11,8 @@ else
 	echo -n "keychain is not installed, please install it first"
 fi
 
-# screenfetch
-$HOME/.dotfiles/bin/screenfetch-dev
+# neofetch
+$HOME/.dotfiles/neofetch/neofetch
 
 # tmux new
 tn() {
