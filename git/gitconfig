@@ -1,8 +1,8 @@
 [push]
 	default = simple
 [user]
-	name = Nick Gotsinas
-	email = nick.gotsinas@gmail.com
+	name = darf
+	email = darf@gameforce.net
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -26,3 +26,5 @@
 	excludesfile = /Users/darf/.gitignore
 [commit]
 	template = /Users/darf/.stCommitMsg
+[init]
+	defaultBranch = production
