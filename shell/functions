@@ -12,7 +12,7 @@ else
 fi
 
 # neofetch
-$HOME/.dotfiles/neofetch/neofetch
+$HOME/.dotfiles/neofetch/neofetch --disable packages
 
 # tmux new
 tn() {
