@@ -18,3 +18,4 @@ alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
 alias df="df -h"
 alias tls="tmux ls"
 alias pp='find /share/data/systems/downloads/complete -name "*.rar" -execdir unrar e -o- "{}" \;'
+alias kc='kubectk'
