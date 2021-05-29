@@ -29,11 +29,7 @@ case `uname` in
 esac
 
 # Set the theme
-<<<<<<< HEAD
 antigen theme essembeh
-=======
-# antigen theme agnoster
->>>>>>> 8bea872554ee6a287a98bf90690fa7db615889c7
 
 # And lastly, apply the Antigen stuff
 antigen apply
