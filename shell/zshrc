@@ -35,4 +35,4 @@ antigen theme essembeh
 antigen apply
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
 source $HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh
-source .dotfiles/powerline/powerline/bindings/zsh/powerline.zsh
+#source .dotfiles/powerline/powerline/bindings/zsh/powerline.zsh
