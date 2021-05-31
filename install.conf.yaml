@@ -17,6 +17,7 @@
     ~/.vimrc: vim/vimrc
     ~/.vim: vim
     ~/.tmux.conf: shell/tmux.conf
+    ~/.p10k.zsh: shell/p10k.zsh
     # Linters
     # ~/.eslintrc: linters/.eslintrc
     # Git
