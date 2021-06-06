@@ -15,7 +15,7 @@
     ~/.fonts: fonts
     ~/.zshrc: shell/zshrc
     ~/.vimrc: vim/vimrc
-    ~/.vim: vim
+    #    ~/.vim: vim
     ~/.tmux.conf: shell/tmux.conf
     ~/.p10k.zsh: shell/p10k.zsh
     # Linters
