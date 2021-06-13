@@ -15,4 +15,4 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
 # workaround for .vim directory
-rsync -av .dotfiles/vim .vim
+rsync -av $HOME/.dotfiles/vim $HOME/.vim
