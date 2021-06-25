@@ -1,0 +1,53 @@
+section: screens
+	c50195.local:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+	sylvanas:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+	arthas.gameforce.net:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+end
+
+section: aliases
+	sylvanas:
+		sylvanas.gameforce.net
+	arthas.gameforce.net:
+		arthas
+end
+
+section: links
+	c50195.local:
+		right = sylvanas
+	sylvanas:
+		right = arthas.gameforce.net
+		left = c50195.local
+	arthas.gameforce.net:
+		left = sylvanas
+end
+
+section: options
+	relativeMouseMoves = false
+	screenSaverSync = true
+	win32KeepForeground = false
+	disableLockToScreen = false
+	clipboardSharing = true
+	clipboardSharingSize = 3072
+	switchCorners = none 
+	switchCornerSize = 0
+	mousebutton(4) = ;keystroke(Alt+Left,arthas.gameforce.net)
+end
+
