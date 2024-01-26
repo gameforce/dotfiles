@@ -20,10 +20,10 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 oh-my-posh --init --shell pwsh --config ~/default.omp.json | Invoke-Expression
 
 # add oh-ny-posh to $profile
-Add-Content -Path $profile "`noh-my-posh --init --shell pwsh --config ~/default.omp.json '| Invoke-Expression"
+Add-Content -Path $profile "`noh-my-posh --init --shell pwsh --config ~/default.omp.json | Invoke-Expression"
 
 # install icons
-Install-Module -Name Terminal-Icons -Repository PSGallery
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 # add icons to $profile
 Add-Content -Path $profile "`nImport-Module -Name Terminal-Icons"
