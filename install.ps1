@@ -17,10 +17,10 @@ winget install JanDeDobbeleer.OhMyPosh
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 
 # initialize oh-my-posh
-oh-my-posh --init --shell pwsh --config ~/default.omp.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config "C:\Users\darf\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_modern.omp.json" | Invoke-Expression
 
 # add oh-ny-posh to $profile
-Add-Content -Path $profile "`noh-my-posh --init --shell pwsh --config ~/default.omp.json | Invoke-Expression"
+Add-Content -Path $profile "`noh-my-posh --init --shell pwsh --config C:\Users\darf\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_modern.omp.json | Invoke-Expression"
 
 # install icons
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
