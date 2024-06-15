@@ -7,7 +7,7 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
-    ignore = untracked
+	ignore = dirty
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
