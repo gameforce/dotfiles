@@ -8,8 +8,6 @@ set -euo pipefail
 
 DOTFILES_DIR="${HOME}/.dotfiles"
 REPO_URL="git@github.com:gameforce/dotfiles.git"
-DOTBOT_DIR="anishathalye/dotbot"
-DOTBOT_BIN="${DOTBOT_DIR}/bin/dotbot"
 CONFIG_FILE="install.conf.yaml"
 
 echo "→ Starting dotfiles bootstrap..."
@@ -27,17 +25,20 @@ install_packages() {
       curl \
       wget \
       vim \
+      pipx \
+      python3-yaml \
+      keychain \
       locales \
       build-essential \
       ca-certificates
   elif command -v dnf >/dev/null 2>&1; then
     echo "→ Detected Fedora. Installing packages..."
-    sudo dnf install -y zsh git curl wget vim
+    sudo dnf install -y zsh git curl wget vim pipx python3-yaml keychain
   elif command -v pacman >/dev/null 2>&1; then
     echo "→ Detected Arch. Installing packages..."
-    sudo pacman -Sy --noconfirm zsh git curl wget vim
+    sudo pacman -Sy --noconfirm zsh git curl wget vim python-pipx python-yaml keychain
   else
-    echo "⚠ Unsupported package manager. Please install zsh, git and vim manually."
+    echo "⚠ Unsupported package manager. Please install zsh, git, vim, pipx and keychain manually."
   fi
 }
 
@@ -54,22 +55,31 @@ setup_repo() {
   fi
 
   cd "${DOTFILES_DIR}"
-
-  # Make sure submodules are initialized
   echo "→ Updating submodules..."
-  git submodule update --init --recursive
+  git submodule update --init --recursive || true
 }
 
 # ----------------------------------------
-# 3. Run Dotbot
+# 3. Install / Update Dotbot via pipx
+# ----------------------------------------
+install_dotbot() {
+  echo "→ Installing / updating Dotbot with pipx..."
+  pipx ensurepath
+  pipx install --force dotbot
+  export PATH="${HOME}/.local/bin:${PATH}"
+}
+
+# ----------------------------------------
+# 4. Run Dotbot
 # ----------------------------------------
 run_dotbot() {
   echo "→ Running Dotbot..."
-  "${DOTFILES_DIR}/${DOTBOT_BIN}" -d "${DOTFILES_DIR}" -c "${CONFIG_FILE}" "${@}"
+  export PATH="${HOME}/.local/bin:${PATH}"
+  dotbot -d "${DOTFILES_DIR}" -c "${DOTFILES_DIR}/${CONFIG_FILE}" "$@"
 }
 
 # ----------------------------------------
-# 4. Change default shell to zsh
+# 5. Change default shell to zsh
 # ----------------------------------------
 set_zsh_as_default() {
   if [ "$SHELL" != "$(which zsh)" ]; then
@@ -86,6 +96,7 @@ set_zsh_as_default() {
 # ----------------------------------------
 install_packages
 setup_repo
+install_dotbot
 run_dotbot "$@"
 set_zsh_as_default
 

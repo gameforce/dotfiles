@@ -4,11 +4,10 @@ eval $(dircolors $ZSH_BASE/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # keychain
-if [ -e `which keychain` ]
-then
-	eval `keychain --eval --agents ssh id_rsa`
+if command -v keychain >/dev/null 2>&1; then
+    eval "$(keychain --eval --agents ssh id_ed25519_github 2>/dev/null)"
 else
-	echo -n "keychain is not installed, please install it first"
+    echo "keychain is not installed, please install it first"
 fi
 
 # neofetch
