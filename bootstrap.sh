@@ -7,7 +7,7 @@ set -euo pipefail
 # ============================================
 
 DOTFILES_DIR="${HOME}/.dotfiles"
-REPO_URL="git@github.com:gameforce/dotfiles.git"
+REPO_URL="https://github.com/gameforce/dotfiles.git"
 CONFIG_FILE="install.conf.yaml"
 
 echo "→ Starting dotfiles bootstrap..."
