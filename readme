@@ -1,62 +1,66 @@
-Adding your config files to GitHub
-----------------------------------
+# Dotfiles
 
-You'll also need to Signup for a free GitHub account, and create a new repository. 
-GitHub uses public-key cryptography and SSH for authentication, so you.ll need to 
-create a SSH public key on each machine you'll be accessing GitHub from. 
+Personal configuration files managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
-Here's how to do this:
+## Quick Start (Recommended)
 
-$ cd ~/.ssh
-$ mkdir backup
-$ mv id_rsa* key_backup
-$ ssh-keygen -t rsa -C "user@hostname"
+On a new machine, run:
 
-It's necessary to have an ssh key manager loaded so that it loads our keys, keychain (http://funtoo.org/keychain) 
-is great for this, it's available on portage, yum and aptitude
+```bash
+bash <(curl -s https://raw.githubusercontent.com/gameforce/dotfiles/master/bootstrap.sh)
+```
 
-After adding your public key details to your GitHub account page you're ready to add your config files:
+Or the classic way:
 
-  git init
-  git add .zshrc
-  git add .vimrc
-  git add <any other config files you want to add>
-  git commit -a -m 'Initial commit'
-  git remote add origin git@github.com:gameforce/dotfiles.git # Your URL will differ
-  git push origin master
+```bash
+git clone --recursive git@github.com:gameforce/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./bootstrap.sh
+```
 
-Now all your config files are on GitHub!
+The bootstrap script will:
 
-Setting up a new machine
-------------------------
+- Install required packages (`zsh`, `git`, `vim`, `pipx`, `keychain`, etc.)
+- Clone/update this repository
+- Install/update Dotbot via `pipx`
+- Create the necessary symlinks
+- Set `zsh` as the default shell
 
-You'll need to create a SSH public key on the new machine, just as you did on the previous one.
+After it finishes, log out and log back in (or run `exec zsh`).
 
-Once you've done that:
+## Manual Installation
 
-  git init
-  git pull git@github.com:gameforce/dotfiles.git .dotfiles
-  cd .dotfiles
-  git remote add origin git@github.com:gameforce/dotfiles.git
+If you prefer to do it step by step:
 
-This will create a clone inside .dotfiles, cd to that directory and run ./install.sh 
-which will copy everything as a "." file/directory in your $HOME
+```bash
+git clone --recursive git@github.com:gameforce/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+pipx install dotbot
+dotbot -d ~/.dotfiles -c install.conf.yaml
+chsh -s $(which zsh)
+```
 
-Now your setup will match your other machine
+## Updating
 
-Making Changes
----------------
+```bash
+cd ~/.dotfiles
+git pull
+./bootstrap.sh
+```
 
-The real benefit of storing your config files on GitHub is that it makes it really easy to synchronize 
-changes between all your computers. After making a change on one computer:
+## Structure
 
-  git commit -a -m "Useful commit message goes here"
-  git push origin master
+| Path | Description |
+|------|-------------|
+| `shell/` | zsh configuration, aliases, functions, environment |
+| `git/` | Git configuration |
+| `vim/` | Vim configuration |
+| `bin/` | Custom scripts |
+| `bootstrap.sh` | One-command installer |
+| `install.conf.yaml` | Dotbot configuration |
 
-Then all you need to do on your other machines is issue the following commands:
-  cd .dotfiles/
-  git pull origin master
-  # Only if there are updates run:
-  ./install.sh
+## Notes
 
-And you're synced!
+- Uses **Antigen** + **Powerlevel10k**
+- SSH key recommended: `~/.ssh/id_ed25519_github`
+- `keychain` is used to manage SSH keys
