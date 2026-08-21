@@ -13,7 +13,7 @@ bash <(curl -s https://raw.githubusercontent.com/gameforce/dotfiles/master/boots
 Or the classic way:
 
 ```bash
-git clone --recursive git@github.com:gameforce/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/gameforce/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./bootstrap.sh
 ```
