@@ -20,10 +20,11 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 & (Join-Path $PSScriptRoot "fonts\install-nerd-font.ps1") -FontName "Hack"
 
 # initialize oh-my-posh
-oh-my-posh --init --shell pwsh --config "C:\Users\darf\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_modern.omp.json" | Invoke-Expression
+$ohMyPoshTheme = "$env:LOCALAPPDATA\Programs\oh-my-posh\themes\powerlevel10k_modern.omp.json"
+oh-my-posh --init --shell pwsh --config "$ohMyPoshTheme" | Invoke-Expression
 
-# add oh-ny-posh to $profile
-Add-Content -Path $profile "`noh-my-posh --init --shell pwsh --config C:\Users\darf\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_modern.omp.json | Invoke-Expression"
+# add oh-my-posh to $profile
+Add-Content -Path $profile "`noh-my-posh --init --shell pwsh --config `"$ohMyPoshTheme`" | Invoke-Expression"
 
 # install icons
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force

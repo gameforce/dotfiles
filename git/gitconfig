@@ -3,12 +3,6 @@
 [user]
 	name = darf
 	email = darf@gameforce.net
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   gr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
@@ -23,8 +17,11 @@
 	required = true
 	process = git-lfs filter-process
 [core]
-	excludesfile = /Users/darf/.gitignore
-[commit]
-	template = /Users/darf/.stCommitMsg
+	excludesfile = ~/.gitignore
 [init]
 	defaultBranch = production
+# Machine-specific overrides (Sourcetree difftool/mergetool, a commit
+# template, etc.) belong in ~/.gitconfig.local, which isn't tracked here.
+# See git/gitconfig.local.example for a Mac + Sourcetree starting point.
+[include]
+	path = ~/.gitconfig.local

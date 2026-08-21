@@ -41,8 +41,15 @@ antigen theme romkatv/powerlevel10k
 
 # And lastly, apply the Antigen stuff
 antigen apply
-export PATH="/usr/local/opt/helm@2/bin:$PATH"
-source $HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh
+
+# Only relevant on the one machine with `brew install helm@2`; harmless
+# no-op everywhere else.
+[[ -d /usr/local/opt/helm@2/bin ]] && export PATH="/usr/local/opt/helm@2/bin:$PATH"
+
+# `antigen bundle kubectl` above already loads this, but re-source it
+# defensively in case antigen hasn't populated ~/.antigen yet.
+[[ -f $HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh ]] && \
+  source $HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh
 #source .dotfiles/powerline/powerline/bindings/zsh/powerline.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

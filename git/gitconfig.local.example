@@ -1,0 +1,16 @@
+# Example ~/.gitconfig.local for a Mac using Sourcetree.
+#
+# This file is NOT symlinked by dotbot and NOT included automatically --
+# copy whatever you need from it into ~/.gitconfig.local yourself.
+# git/gitconfig already has `[include] path = ~/.gitconfig.local`, and git
+# silently skips that include if the file doesn't exist, so this only takes
+# effect on machines where you've created it.
+
+[difftool "sourcetree"]
+	cmd = opendiff "$LOCAL" "$REMOTE"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
+	trustExitCode = true
+[commit]
+	template = ~/.stCommitMsg
