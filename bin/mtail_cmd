@@ -1,3 +1,0 @@
-#!/bin/sh
-
-multitail -Z red,black,inverse -T -x "%m %u@%h %f (%t) [%l]" -b 8 -m 50 -n 0 -f -cS mysql -cS ntpd -cS postfix -cS samba -cS syslog "/var/log/messages" -n 0 -f -cS boinc -I "/var/log/boinc.log" -n 0 -f -cS ssh -I "/var/log/ssh.log"
