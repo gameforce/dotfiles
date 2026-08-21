@@ -14,7 +14,10 @@ winget install Microsoft.WindowsTerminal
 winget install JanDeDobbeleer.OhMyPosh
 
 # reload PATH
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+# install the Nerd Font used by the p10k / oh-my-posh prompt
+& (Join-Path $PSScriptRoot "fonts\install-nerd-font.ps1") -FontName "Hack"
 
 # initialize oh-my-posh
 oh-my-posh --init --shell pwsh --config "C:\Users\darf\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_modern.omp.json" | Invoke-Expression

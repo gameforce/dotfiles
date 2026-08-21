@@ -24,6 +24,7 @@ The bootstrap script will:
 - Clone/update this repository
 - Install/update Dotbot via `pipx`
 - Create the necessary symlinks
+- Install the Hack Nerd Font (Mono) used by the p10k prompt
 - Set `zsh` as the default shell
 
 After it finishes, log out and log back in (or run `exec zsh`).
@@ -58,6 +59,30 @@ git pull
 | `bin/` | Custom scripts |
 | `bootstrap.sh` | One-command installer |
 | `install.conf.yaml` | Dotbot configuration |
+
+## Fonts
+
+No font files are vendored in this repo. `fonts/install-nerd-font.sh`
+(Linux/macOS, run automatically by `bootstrap.sh`) and
+`fonts/install-nerd-font.ps1` (Windows, run automatically by
+`install.ps1`) always download the current **Hack Nerd Font Mono**
+release straight from
+[ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts/releases/latest)
+and install it for the current user. Re-run either script any time
+to update the font or grab a different one, e.g.:
+
+```bash
+fonts/install-nerd-font.sh Meslo
+```
+
+```powershell
+.\fonts\install-nerd-font.ps1 -FontName Meslo
+```
+
+After installing, point your terminal's font at **"Hack Nerd Font Mono"**
+(Windows Terminal, ConEmu, iTerm2, GNOME Terminal, etc. all take a regular
+installed font name here — no special "Windows compatible" build is
+needed, that variant was retired upstream years ago).
 
 ## Notes
 

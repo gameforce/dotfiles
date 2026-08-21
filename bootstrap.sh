@@ -28,15 +28,16 @@ install_packages() {
       pipx \
       python3-yaml \
       keychain \
+      unzip \
       locales \
       build-essential \
       ca-certificates
   elif command -v dnf >/dev/null 2>&1; then
     echo "→ Detected Fedora. Installing packages..."
-    sudo dnf install -y zsh git curl wget vim pipx python3-yaml keychain
+    sudo dnf install -y zsh git curl wget vim pipx python3-yaml keychain unzip
   elif command -v pacman >/dev/null 2>&1; then
     echo "→ Detected Arch. Installing packages..."
-    sudo pacman -Sy --noconfirm zsh git curl wget vim python-pipx python-yaml keychain
+    sudo pacman -Sy --noconfirm zsh git curl wget vim python-pipx python-yaml keychain unzip
   else
     echo "⚠ Unsupported package manager. Please install zsh, git, vim, pipx and keychain manually."
   fi
@@ -79,7 +80,15 @@ run_dotbot() {
 }
 
 # ----------------------------------------
-# 5. Change default shell to zsh
+# 5. Install the Nerd Font used by the p10k prompt
+# ----------------------------------------
+install_fonts() {
+  echo "→ Installing Hack Nerd Font..."
+  "${DOTFILES_DIR}/fonts/install-nerd-font.sh" Hack || echo "⚠ Font install failed, skipping (you can re-run fonts/install-nerd-font.sh later)."
+}
+
+# ----------------------------------------
+# 6. Change default shell to zsh
 # ----------------------------------------
 set_zsh_as_default() {
   if [ "$SHELL" != "$(which zsh)" ]; then
@@ -98,6 +107,7 @@ install_packages
 setup_repo
 install_dotbot
 run_dotbot "$@"
+install_fonts
 set_zsh_as_default
 
 echo ""
