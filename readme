@@ -56,7 +56,7 @@ git pull
 | `shell/` | zsh configuration, aliases, functions, environment |
 | `git/` | Git configuration |
 | `vim/` | Vim configuration |
-| `bin/` | Custom scripts |
+| `fonts/` | On-demand Nerd Font install scripts (see below, nothing vendored) |
 | `bootstrap.sh` | One-command installer |
 | `install.conf.yaml` | Dotbot configuration |
 
@@ -89,3 +89,7 @@ needed, that variant was retired upstream years ago).
 - Uses **Antigen** + **Powerlevel10k**
 - SSH key recommended: `~/.ssh/id_ed25519_github`
 - `keychain` is used to manage SSH keys
+
+## License
+
+[MIT](LICENSE)
