@@ -29,10 +29,6 @@ case `uname` in
     # Commands for OS X go here
     antigen bundle osx
   ;;
-  Linux)
-    # Commands for Linux go here
-    git -C $HOME/.dotfiles pull
-  ;;
 esac
 
 # Set the theme
