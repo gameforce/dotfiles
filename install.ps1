@@ -1,12 +1,6 @@
 # temporary bypass execution policy
 # powershell.exe -noprofile -executionpolicy bypass -file .\install.ps1
-Set-ExecutionPolicy -Scope CurrentUser Bypass
-
-# update winget
-winget update
-
-# update packages
-winget upgrade --all --include-unknown
+Set-ExecutionPolicy -Scope Process Bypass
 
 # Install PowerShell, Windows Terminal, oh-my-posh
 winget install Microsoft.PowerShell
