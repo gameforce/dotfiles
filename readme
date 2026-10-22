@@ -70,7 +70,7 @@ powershell.exe -noprofile -executionpolicy bypass -file .\install.ps1
 ```
 
 It installs PowerShell 7, Windows Terminal, oh-my-posh, Terminal-Icons and the
-Hack and Meslo Nerd Fonts, then copies `terminal/powershell/Microsoft.PowerShell_profile.ps1`
+Hack Nerd Font, then copies `terminal/powershell/Microsoft.PowerShell_profile.ps1`
 to the PowerShell 7 profile and `terminal/windows-terminal/settings.json` to
 Windows Terminal. Existing files are backed up as `<file>.bak-YYYY-MM-DD`, and
 re-running is safe. These are copies, not links: after changing settings in

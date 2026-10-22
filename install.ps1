@@ -22,8 +22,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 # install icons
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
-# install the Meslo Nerd Font used by the PowerShell profile in Windows Terminal
-& (Join-Path $PSScriptRoot "fonts\install-nerd-font.ps1") -FontName "Meslo"
 
 # copy a repo file into place, keeping a dated backup of what was there
 function Install-DotFile($Source, $Target) {
