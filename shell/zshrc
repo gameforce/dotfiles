@@ -38,6 +38,10 @@ antigen theme romkatv/powerlevel10k
 # And lastly, apply the Antigen stuff
 antigen apply
 
+# Tab title: host:path at the prompt, host:command while running
+ZSH_THEME_TERM_TITLE_IDLE="%m:%~"
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%m:%~"
+
 # Only relevant on the one machine with `brew install helm@2`; harmless
 # no-op everywhere else.
 [[ -d /usr/local/opt/helm@2/bin ]] && export PATH="/usr/local/opt/helm@2/bin:$PATH"
