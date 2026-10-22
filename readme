@@ -57,8 +57,24 @@ git pull
 | `git/` | Git configuration |
 | `vim/` | Vim configuration |
 | `fonts/` | On-demand Nerd Font install scripts (see below, nothing vendored) |
+| `terminal/` | Windows Terminal `settings.json` and PowerShell 7 profile (installed by `install.ps1`) |
 | `bootstrap.sh` | One-command installer |
 | `install.conf.yaml` | Dotbot configuration |
+
+## Windows
+
+From a clone of this repo in PowerShell:
+
+```powershell
+powershell.exe -noprofile -executionpolicy bypass -file .\install.ps1
+```
+
+It installs PowerShell 7, Windows Terminal, oh-my-posh, Terminal-Icons and the
+Hack and Meslo Nerd Fonts, then copies `terminal/powershell/Microsoft.PowerShell_profile.ps1`
+to the PowerShell 7 profile and `terminal/windows-terminal/settings.json` to
+Windows Terminal. Existing files are backed up as `<file>.bak-YYYY-MM-DD`, and
+re-running is safe. These are copies, not links: after changing settings in
+Windows Terminal, copy the file back into the repo to keep it.
 
 ## Fonts
 
