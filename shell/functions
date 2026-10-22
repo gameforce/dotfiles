@@ -28,6 +28,3 @@ claude() {
 	print -Pn "\e]2;Claude:%~\a"
 	CLAUDE_CODE_DISABLE_TERMINAL_TITLE=1 command claude "$@";
 }
-
-# short names for repos outside ~ (shown as ~name in prompts and titles)
-[[ -d /mnt/c/Users/darf/git/forever ]] && hash -d forever=/mnt/c/Users/darf/git/forever
