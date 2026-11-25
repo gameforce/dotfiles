@@ -1,3 +1,11 @@
+# keychain must stay ABOVE the p10k instant prompt block (it asks for the key passphrase at startup).
+# Claude Code shells (CLAUDECODE set) never get the admin agent: Claude uses its own read-only key.
+if [[ -n "$CLAUDECODE" ]]; then
+  unset SSH_AUTH_SOCK SSH_AGENT_PID
+else
+  eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_ed25519_admin)
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -67,3 +75,6 @@ export PATH=/home/darf/.opencode/bin:$PATH
 
 # Added by Antigravity CLI installer
 export PATH="/home/darf/.local/bin:$PATH"
+
+# Claude Code shells (CLAUDECODE set): drop any ssh-agent set above (keychain in ~/.functions loads the GitHub key too).
+[[ -n "$CLAUDECODE" ]] && unset SSH_AUTH_SOCK SSH_AGENT_PID
