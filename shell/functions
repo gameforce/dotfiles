@@ -3,12 +3,8 @@
 eval $(dircolors $ZSH_BASE/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# keychain
-if command -v keychain >/dev/null 2>&1; then
-    eval "$(keychain --eval --agents ssh id_ed25519_github 2>/dev/null)"
-else
-    echo "keychain is not installed, please install it first"
-fi
+# ssh keys (admin + github) are loaded by keychain at the top of zshrc,
+# above the p10k instant prompt, so the passphrase prompt works.
 
 # neofetch
 $HOME/.dotfiles/neofetch/neofetch --disable packages

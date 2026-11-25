@@ -3,7 +3,9 @@
 if [[ -n "$CLAUDECODE" ]]; then
   unset SSH_AUTH_SOCK SSH_AGENT_PID
 else
-  eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_ed25519_admin)
+  _keys=(); for _k in ~/.ssh/id_ed25519_admin ~/.ssh/id_ed25519_github; do [[ -f $_k ]] && _keys+=($_k); done
+  eval $(keychain --eval --quiet --agents ssh $_keys)
+  unset _keys _k
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
